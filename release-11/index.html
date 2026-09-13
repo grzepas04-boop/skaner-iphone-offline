@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#17191d" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Skaner Studio" />
+    <link rel="apple-touch-icon" href="./assets/skaner-icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
+    <title>Skaner Studio</title>
+    <script type="module" crossorigin src="./assets/index-B6c6maR2.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CoNw900U.css">
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark"><img src="./assets/skaner-icon.png" alt=""></span><strong>Skaner Studio</strong><small>precyzyjne modelowanie 3D</small></div>
+        <nav class="workspace-tabs"><button id="tab-model" class="active">MODEL</button><button id="tab-export">EKSPORT</button></nav>
+        <div class="top-actions">
+          <span id="engine-state" class="engine-state">LOKALNY SILNIK GEOMETRII</span>
+          <button id="project-new">Nowy</button><button id="project-open">Otwórz</button><button id="project-save">Zapisz</button><button id="load-sample">Odzyskaj</button>
+          <input id="project-file" type="file" accept="application/json,.skaner3d" hidden>
+        </div>
+      </header>
+
+      <main class="layout">
+        <aside class="left-panel panel" hidden aria-hidden="true">
+          <section class="panel-section">
+            <div class="section-title"><span>01</span><div><strong>Rzuty obiektu</strong><small>Jednolity układ i skala</small></div></div>
+            <div id="view-slots" class="view-slots"></div>
+            <p class="hint">Do rozmowy możesz dodać dowolną liczbę rzutów. Do rekonstrukcji geometrycznej minimum to przód, prawa strona i góra.</p>
+          </section>
+          <section class="panel-section dimensions">
+            <div class="section-title"><span>02</span><div><strong>Wymiary modelu</strong><small>Kanoniczne milimetry</small></div></div>
+            <label>X <input id="dim-x" type="number" min="10" max="1000" step="1" value="90"><b>mm</b></label>
+            <label>Y <input id="dim-y" type="number" min="10" max="1000" step="1" value="180"><b>mm</b></label>
+            <label>Z <input id="dim-z" type="number" min="10" max="1000" step="1" value="115"><b>mm</b></label>
+          </section>
+          <button id="generate" class="generate"><span>◆</span><div><strong>REKONSTRUUJ Z RZUTÓW</strong><small>SDF + przecięcie sylwetek</small></div></button>
+        </aside>
+
+        <section class="viewport-shell">
+          <div class="viewport-toolbar">
+            <div class="tool-group camera-views"><button id="view-main" class="active">GŁÓWNY</button><button id="view-iso">ISO</button><button id="view-front">PRZÓD</button><button id="view-right">BOK</button><button id="view-top">GÓRA</button><button id="view-bottom">DÓŁ</button></div>
+            <div class="tool-group"><button id="shade-solid" class="active">SOLID</button><button id="shade-wire">SIATKA</button><button id="toggle-grid" class="active">GRID</button></div>
+          </div>
+          <div class="modeling-toolbar" aria-label="Narzędzia modelowania">
+            <div class="modeling-tools">
+              <button id="tool-select" class="active" title="Obrót i wybór">⌖ <span>Wybierz</span></button>
+              <button id="tool-draw" title="Narysuj zamkniętą bryłę przewodu">✎ <span>Rysuj 3D</span></button>
+              <button id="tool-add-primitive" title="Dodaj prymityw">＋ <span>Bryła</span></button>
+              <button id="tool-move" title="Przesuń aktywną bryłę w osiach XYZ">↔ <span>Przesuń</span></button>
+              <button id="tool-rotate" title="Obróć aktywną bryłę wokół osi XYZ">⟳ <span>Obróć</span></button>
+              <button id="tool-scale" title="Skaluj aktywną bryłę proporcjonalnie lub według osi">⤢ <span>Skaluj</span></button>
+              <button id="tool-face" title="Zaznacz ścianę i wypchnij albo skaluj jej kontur">▱ <span>Ściana</span></button>
+              <button id="tool-boolean" title="Połącz dwie rewizje bryłowe">∪ <span>Boolean</span></button>
+              <button id="tool-sculpt" title="Rzeźb powierzchnię w milimetrach">◉ <span>Rzeźba</span></button>
+              <button id="tool-delete" class="danger" title="Usuń zaznaczony obiekt">⌫ <span>Usuń</span></button>
+              <button id="tool-undo" title="Cofnij ostatnią lokalną zmianę" disabled>↶ <span>Cofnij</span></button>
+              <button id="tool-redo" title="Ponów ostatnią cofniętą zmianę" disabled>↷ <span>Ponów</span></button>
+            </div>
+            <div id="draw-options" class="tool-options" hidden>
+              <label>Tryb
+                <select id="draw-mode"><option value="rod">Kreska / pręt (zamknięcie = pełna bryła)</option><option value="outline">Wymagaj zamkniętego, pełnego konturu</option></select>
+              </label>
+              <label>Profil
+                <select id="draw-profile"><option value="round">Okrąg</option><option value="square">Kwadrat</option><option value="hex">Heksagon</option><option value="star">Gwiazda</option><option value="ribbon">Taśma</option></select>
+              </label>
+              <label>Start <input id="draw-diameter" type="number" min="0.03" max="50" step="0.01" value="6"><b>mm</b></label>
+              <label>Koniec <input id="draw-diameter-end" type="number" min="0.03" max="50" step="0.01" value="6"><b>mm</b></label>
+              <label>Skręt <input id="draw-twist" type="number" min="-36000" max="36000" step="1" value="0"><b>°</b></label>
+              <label>Grubość taśmy <input id="draw-ribbon-thickness" type="number" min="0.03" max="50" step="0.01" value="1.2"><b>mm</b></label>
+              <button id="draw-finish">Zakończ kreskę</button>
+              <button id="draw-cancel">Anuluj</button>
+              <small>LPM lub 1 palec rysuje. PPM albo 2 palce sterują kamerą. Puść palec, obróć widok i kontynuuj w nowej płaszczyźnie.</small>
+            </div>
+            <div id="primitive-options" class="tool-options" hidden>
+              <label>Bryła
+                <select id="primitive-shape"><option value="box">Blok</option><option value="triangle_prism">Trójkąt — graniastosłup</option><option value="hex_prism">Heksagon — graniastosłup</option><option value="sphere">Kula</option><option value="cylinder">Cylinder</option><option value="ellipsoid">Elipsoida</option><option value="cone">Stożek</option></select>
+              </label>
+              <label>Rozmiar <input id="primitive-size" type="number" min="0.2" max="1000" step="0.1" value="40"><b>mm</b></label>
+              <button id="primitive-create">Dodaj na środku</button>
+            </div>
+            <div id="sculpt-options" class="tool-options" hidden>
+              <label>Narzędzie
+                <select id="sculpt-mode"><option value="inflate">Wypchnij</option><option value="deflate">Dłuto / wgnieć</option><option value="smooth">Wygładź</option><option value="flatten">Spłaszcz</option><option value="crease">Bruzda</option><option value="grab">Rozciągnij</option><option value="thicken">Pogrub</option></select>
+              </label>
+              <label>Promień <input id="sculpt-radius" type="number" min="0.1" max="1000" step="0.1" value="8"><b>mm</b></label>
+              <label>Ruch <input id="sculpt-depth" type="number" min="0.01" max="100" step="0.1" value="2"><b>mm</b></label>
+              <label>Siła <input id="sculpt-strength" type="number" min="-1" max="1" step="0.05" value="0.45"></label>
+              <button id="sculpt-prepare">Przygotuj gęstą siatkę</button>
+              <small>LPM lub 1 palec po powierzchni · 2 palce sterują kamerą · jedna operacja w historii</small>
+            </div>
+            <div id="face-options" class="tool-options" hidden>
+              <strong>Edycja ściany</strong>
+              <label>Wypchnij <input id="face-offset" aria-label="Wypchnięcie ściany w mm" type="number" min="-100000" max="100000" step="0.1" value="5"><b>mm</b></label>
+              <label>Skala konturu <input id="face-scale" aria-label="Skala konturu ściany" type="number" min="0.05" max="20" step="0.05" value="1"></label>
+              <label>Łączenie powierzchni <input id="face-angle" aria-label="Kąt łączenia powierzchni" type="number" min="0.1" max="89" step="0.5" value="8"><b>°</b></label>
+              <button id="face-apply">Zastosuj do ściany</button>
+              <button id="face-clear">Wyczyść wybór</button>
+              <small>Kliknij ścianę. Dodatnia wartość wypycha na zewnątrz, ujemna wgniata. Skala powiększa lub pomniejsza jej kontur.</small>
+            </div>
+            <div id="transform-options" class="tool-options" hidden>
+              <strong id="transform-title">Przesuwanie</strong>
+              <fieldset id="transform-move-fields"><legend>Przesuń X / Y / Z w mm</legend><input id="move-x" aria-label="Przesunięcie X" type="number" step="0.1" value="0"><input id="move-y" aria-label="Przesunięcie Y" type="number" step="0.1" value="0"><input id="move-z" aria-label="Przesunięcie Z" type="number" step="0.1" value="0"></fieldset>
+              <fieldset id="transform-rotate-fields" hidden><legend>Obróć X / Y / Z w stopniach</legend><input id="rotate-x" aria-label="Obrót X" type="number" step="1" value="0"><input id="rotate-y" aria-label="Obrót Y" type="number" step="1" value="0"><input id="rotate-z" aria-label="Obrót Z" type="number" step="1" value="0"></fieldset>
+              <fieldset id="transform-scale-fields" hidden><legend>Niezależna skala bryły</legend><label><b>X szerokość</b><input id="scale-x" aria-label="Skala szerokości X" type="number" min="0.02" max="1000" step="0.01" value="1"></label><label><b>Y głębokość</b><input id="scale-y" aria-label="Skala głębokości Y" type="number" min="0.02" max="1000" step="0.01" value="1"></label><label><b>Z wysokość</b><input id="scale-z" aria-label="Skala wysokości Z" type="number" min="0.02" max="1000" step="0.01" value="1"></label><label><input id="scale-uniform" type="checkbox"> Zachowaj proporcje</label><label>Uchwyt <select id="scale-gizmo-axis" aria-label="Widoczne osie skalowania"><option value="XYZ">Wszystkie XYZ</option><option value="X">Szerokość X</option><option value="Y">Głębokość Y</option><option value="Z">Wysokość Z</option></select></label><div class="scale-axis-actions"><button type="button" data-scale-z="0.9">Wysokość −10%</button><button type="button" data-scale-z="1.1">Wysokość +10%</button></div><label><b>Docelowa wysokość Z</b><input id="scale-height-mm" aria-label="Docelowa wysokość Z w mm" type="number" min="0.02" max="100000" step="0.1"><b>mm</b></label><button type="button" id="scale-height-apply">Ustaw wysokość Z</button></fieldset>
+              <button id="transform-apply">Przesuń dokładnie</button>
+              <small id="transform-help">Przeciągnij strzałkę gizma albo wpisz dokładne wartości. Eksport zachowuje transformację świata.</small>
+            </div>
+            <div id="boolean-options" class="tool-options compact-actions" hidden>
+              <label>Połącz z poprzednią rewizją
+                <select id="boolean-mode"><option value="union">Suma</option><option value="difference">Różnica</option><option value="intersection">Przecięcie</option></select>
+              </label>
+              <button id="boolean-apply">Wykonaj boolean</button>
+              <small>Baza = poprzednia rewizja, narzędzie = aktualna bryła.</small>
+            </div>
+          </div>
+          <div id="viewport" aria-label="Podgląd modelu 3D"></div>
+          <div class="axis-widget"><i class="x">X</i><i class="y">Y</i><i class="z">Z</i></div>
+          <div id="empty-state" class="empty-state"><div class="scan-orbit">◎</div><strong>Utwórz bryłę albo narysuj kształt 3D</strong><small>Komputer: LPM/PPM/kółko · iPhone: 1 palec narzędzie, 2 palce kamera</small></div>
+          <div id="progress" class="progress" hidden><div class="spinner"></div><strong>Rekonstrukcja siatki…</strong><small>Analiza masek, pole SDF i kontrola zamknięcia</small></div>
+          <section id="export-workspace" class="export-workspace" hidden>
+            <div class="export-card">
+              <span class="export-kicker">PLIKI PRODUKCYJNE</span>
+              <h1>Eksport modelu</h1>
+              <p>Wybierz format aktualnie wczytanej, zwalidowanej siatki. Współrzędne pozostają w milimetrach.</p>
+              <div class="export-options">
+                <button id="export-obj-action" disabled><b>OBJ</b><span>Uniwersalna siatka trójkątów</span><i>↓</i></button>
+                <button id="export-stl-action" disabled><b>STL</b><span>Bryła do przygotowania druku 3D</span><i>↓</i></button>
+              </div>
+              <div id="export-readiness" class="export-readiness">Najpierw wygeneruj albo wczytaj model.</div>
+            </div>
+          </section>
+        </section>
+
+        <aside class="right-panel panel">
+          <section class="panel-section outliner-section">
+            <div class="section-title"><span>SC</span><div><strong>Scena</strong><small>Obiekty projektu</small></div></div>
+            <div id="scene-outliner" class="scene-outliner"><p>Scena jest pusta.</p></div>
+            <div id="outline-properties" class="outline-properties" hidden>
+              <label>Grubość szkicu <input id="outline-height" type="number" min="0.03" max="1000" step="0.1"><b>mm</b></label>
+              <div><button id="outline-preview">Podgląd</button><button id="outline-commit" disabled>Zatwierdź</button><button id="outline-cancel" disabled>Anuluj</button></div>
+              <small>Zmiana przebudowuje recepturę; nie skaluje konturu.</small>
+            </div>
+            <div id="curve-properties" class="outline-properties" hidden>
+              <label>Średnica start <input id="curve-start" type="number" min="0.03" max="50" step="0.01"><b>mm</b></label>
+              <label>Średnica koniec <input id="curve-end" type="number" min="0.03" max="50" step="0.01"><b>mm</b></label>
+              <label>Skręt profilu <input id="curve-twist" type="number" min="-36000" max="36000" step="1"><b>°</b></label>
+              <div><button id="curve-preview">Podgląd</button><button id="curve-commit" disabled>Zatwierdź</button><button id="curve-cancel" disabled>Anuluj</button></div>
+              <small>Krzywa jest przebudowywana z zapisanych punktów i ram transportu równoległego.</small>
+            </div>
+          </section>
+          <section class="panel-section">
+            <div class="section-title"><span>03</span><div><strong>Właściwości</strong><small>Aktualny rezultat</small></div></div>
+            <dl class="stats">
+              <div><dt>Wierzchołki</dt><dd id="stat-vertices">—</dd></div>
+              <div><dt>Trójkąty</dt><dd id="stat-faces">—</dd></div>
+              <div><dt>Komponenty</dt><dd id="stat-components">—</dd></div>
+              <div><dt>Otwarte krawędzie</dt><dd id="stat-boundary">—</dd></div>
+              <div><dt>Objętość</dt><dd id="stat-volume">—</dd></div>
+            </dl>
+          </section>
+          <section class="panel-section">
+            <div class="section-title"><span>04</span><div><strong>Eksport</strong><small>Pliki ostatniej rekonstrukcji</small></div></div>
+            <button id="download-obj" class="export" disabled>↓ Pobierz OBJ</button>
+            <button id="download-stl" class="export" disabled>↓ Pobierz STL</button>
+          </section>
+          <section class="panel-section audit">
+            <div class="section-title"><span>i</span><div><strong>Zakres</strong><small>Bez fałszywych obietnic</small></div></div>
+              <p>Każda operacja zachowuje jednostki mm, historię sceny i jawny raport siatki. Program ostrzega o błędach, ale nie zmienia modelu bez zatwierdzenia.</p>
+          </section>
+        </aside>
+      </main>
+
+      <footer class="statusbar"><span class="status-dot"></span><strong id="status">Gotowy</strong><span id="status-detail">Wszystkie dane pozostają lokalnie</span><b>MM</b><b id="fps">60 FPS</b></footer>
+    </div>
+  </body>
+</html>
