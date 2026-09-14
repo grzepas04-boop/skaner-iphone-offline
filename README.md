@@ -1,6 +1,6 @@
 # Skaner Studio — iPhone Offline
 
-Aktualne wydanie: **36** — płynny gest Chaikina bez samoczynnych pętli, ciągłe pręty bez pierścieni, poprawne normalne ostrych ścian, wygładzanie Loop + Taubin oraz bezpieczne wysuwanie/wsuwanie krawędzi.
+Aktualne wydanie: **37** — gładki podgląd i osobna, gęsta siatka edycyjna trójkątów; wybór pojedynczego trójkąta lub jego krawędzi; wygładzanie do 64× ścian oraz miękkie, geodezyjne wysuwanie/wsuwanie bez rozrywania zamkniętej bryły.
 
 Aktualne wydanie: **release 18**. Bezpośredni adres aplikacji:
 `https://grzepas04-boop.github.io/skaner-iphone-offline/release-18/?offline=1`
@@ -22,6 +22,11 @@ natomiast pełne obrysy nadal zachowują dokładne narożniki narysowane przez u
 Aktualizacja cache 35 dodaje duży, jednoznaczny przełącznik ŚCIANA / KRAWĘDŹ
 MIĘDZY ŚCIANKAMI. Na iPhonie krawędź jest chwytana już przy dotknięciu
 powierzchni blisko linii, bez konieczności trafiania palcem w cienki piksel.
+Aktualizacje cache 36–37 rozdzielają wygląd od topologii: obiekt wygląda gładko,
+ale w trybie Ściana / krawędź pokazuje pełną triangulację możliwą do wskazania.
+Pręty dostają gęste pierścienie także na prostych odcinkach, a deformacja rozkłada
+się na pięciu sąsiednich pierścieniach i automatycznie ogranicza tylko wartość
+podglądu, jeśli większa zmiana odwróciłaby trójkąty.
 
 Instalowalna aplikacja modelowania 3D działająca lokalnie na iPhonie po pierwszym załadowaniu. Otwórz stronę GitHub Pages w Safari, wybierz **Udostępnij → Dodaj do ekranu początkowego**, a następnie uruchamiaj ją z ikony także bez internetu.
 
