@@ -1,4 +1,4 @@
-const CACHE="skaner-studio-offline-release-29-camera-plane";
+const CACHE="skaner-studio-offline-release-30-smooth-mirror";
 const SHELL=["./?offline=1","./manifest.webmanifest","./assets/skaner-icon.png"];
 self.addEventListener("install",event=>event.waitUntil((async()=>{
   const cache=await caches.open(CACHE),response=await fetch("./"),html=await response.text();

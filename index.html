@@ -11,7 +11,7 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-BBvkzRPZ.js"></script>
+    <script type="module" crossorigin src="./assets/index-DiDPpgp1.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-Cv2FwAYX.css">
   </head>
   <body>
@@ -50,9 +50,12 @@
               <button id="tool-face" title="Zaznacz ścianę i wypchnij albo skaluj jej kontur">▱ <span>Ściana</span></button>
               <button id="tool-surface-add" title="Wyciągnij nową bryłę bezpośrednio z powierzchni">⬡ <span>Na bryle</span></button>
               <button id="tool-array" title="Duplikuj albo utwórz szyk liniowy lub kołowy">⠿ <span>Szyk</span></button>
+              <button id="tool-copy" title="Skopiuj wszystkie zaznaczone obiekty">⧉ <span>Kopiuj</span></button>
+              <button id="tool-mirror" title="Odbij geometrię względem lokalnej osi">◩ <span>Lustro</span></button>
               <button id="tool-measure" title="Zmierz odległość pomiędzy punktami powierzchni">⌁ <span>Pomiar</span></button>
               <button id="tool-boolean" title="Połącz dwie rewizje bryłowe">∪ <span>Boolean</span></button>
               <button id="tool-sculpt" title="Rzeźb powierzchnię w milimetrach">◉ <span>Rzeźba</span></button>
+              <button id="tool-smooth" title="Zagęść i wygładź całą bryłę prawdziwymi ścianami">◌ <span>Wygładź</span></button>
               <button id="tool-delete" class="danger" title="Usuń zaznaczony obiekt">⌫ <span>Usuń</span></button>
               <button id="tool-undo" title="Cofnij ostatnią lokalną zmianę" disabled>↶ <span>Cofnij</span></button>
               <button id="tool-redo" title="Ponów ostatnią cofniętą zmianę" disabled>↷ <span>Ponów</span></button>
@@ -112,6 +115,17 @@
               <fieldset class="sculpt-layer-fields"><legend>Warstwy rzeźby</legend><select id="sculpt-layer-select" aria-label="Aktywna warstwa rzeźby"></select><button id="sculpt-layer-new" type="button">＋ Warstwa</button><button id="sculpt-layer-toggle" type="button">Wyłącz</button><button id="sculpt-layer-delete" type="button">Usuń</button><label>Siła <input id="sculpt-layer-opacity" type="number" min="0" max="1" step="0.05" value="1"></label><button id="sculpt-layer-rebuild" type="button">Przelicz</button></fieldset>
               <small>LPM lub 1 palec po powierzchni · symetria działa względem lokalnych osi bryły · każda kreska jest jedną operacją historii</small>
             </div>
+            <div id="smooth-options" class="tool-options" hidden>
+              <strong>Wygładź całą bryłę</strong>
+              <label>Poziom podziału <select id="smooth-level"><option value="1" selected>1 · 4× więcej ścian</option><option value="2">2 · 16× więcej ścian</option></select></label>
+              <label>Siła <input id="smooth-strength" type="number" min="0" max="1" step="0.05" value="0.65"></label>
+              <label><input id="smooth-preserve-sharp" type="checkbox"> Chroń ostre krawędzie</label>
+              <label>Kąt ochrony <input id="smooth-sharp-angle" type="number" min="1" max="179" step="1" value="50"><b>°</b></label>
+              <button id="smooth-preview" type="button">Podgląd wygładzenia</button>
+              <button id="smooth-commit" type="button" disabled>Zatwierdź</button>
+              <button id="smooth-cancel" type="button" disabled>Anuluj</button>
+              <small>Program dzieli każdy trójkąt na cztery i wygładza nowe wierzchołki metodą Loop. To prawdziwa, eksportowana geometria; poziom 2 może być cięższy na telefonie.</small>
+            </div>
             <div id="face-options" class="tool-options" hidden>
               <strong>Edycja powierzchni</strong>
               <label>Wybór <select id="surface-selection-mode"><option value="face">Cała ściana</option><option value="edge">Krawędź ściany</option></select></label>
@@ -147,6 +161,13 @@
               <fieldset id="array-radial-fields" hidden><legend>Oś / pełny kąt</legend><select id="array-axis"><option value="Z">Z</option><option value="Y">Y</option><option value="X">X</option></select><input id="array-angle" aria-label="Kąt szyku promieniowego" type="number" min="0.1" max="36000" step="1" value="360"><b>°</b></fieldset>
               <button id="array-apply" type="button">Utwórz szyk</button>
               <small>Liniowy używa dokładnych odstępów. Promieniowy obraca kopie wokół środka widoku/kamery, zachowując ich własną orientację i odległość od osi.</small>
+            </div>
+            <div id="mirror-options" class="tool-options" hidden>
+              <strong>Lustro lokalne</strong>
+              <label>Oś <select id="mirror-axis"><option value="x">X · lewo/prawo</option><option value="y">Y · przód/tył</option><option value="z">Z · góra/dół</option></select></label>
+              <label><input id="mirror-copy" type="checkbox" checked> Zachowaj oryginał i utwórz kopię</label>
+              <button id="mirror-apply" type="button">Wykonaj lustro</button>
+              <small>Każda zaznaczona bryła odbija się wokół własnego środka. Program odwraca kolejność wierzchołków ścian, aby STL zachował poprawne normale i objętość.</small>
             </div>
             <div id="measure-options" class="tool-options" hidden>
               <strong>Pomiar powierzchni</strong>
