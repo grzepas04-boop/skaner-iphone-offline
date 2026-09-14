@@ -11,8 +11,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-BiiIurYD.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DsIur3l6.css">
+    <script type="module" crossorigin src="./assets/index-CXeSbu-V.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DG6XhFZr.css">
   </head>
   <body>
     <div id="app">
@@ -85,7 +85,7 @@
               <label>Profil
                 <select id="draw-profile"><option value="round">Okrąg</option><option value="square">Kwadrat</option><option value="hex">Heksagon</option><option value="star">Gwiazda</option><option value="ribbon">Taśma</option></select>
               </label>
-              <label>Przebieg <select id="draw-path-mode"><option value="exact">Precyzyjny 1:1</option><option value="smooth">Gładka krzywa</option></select></label>
+              <label>Przebieg <select id="draw-path-mode"><option value="smooth" selected>Naturalna gładka</option><option value="exact">Techniczny 1:1</option></select></label>
               <label>Start <input id="draw-diameter" type="number" min="0.03" max="50" step="0.01" value="6"><b>mm</b></label>
               <label>Koniec <input id="draw-diameter-end" type="number" min="0.03" max="50" step="0.01" value="6"><b>mm</b></label>
               <label>Skręt <input id="draw-twist" type="number" min="-36000" max="36000" step="1" value="0"><b>°</b></label>
@@ -138,11 +138,12 @@
               <label>Wybór <select id="surface-selection-mode"><option value="face">Cała ściana</option><option value="edge">Krawędź ściany</option></select></label>
               <label>Wypchnij <input id="face-offset" aria-label="Wypchnięcie ściany w mm" type="number" min="-100000" max="100000" step="0.1" value="5"><b>mm</b></label>
               <div class="surface-nudge" aria-label="Szybkie wsuwanie i wysuwanie"><button type="button" data-face-nudge="-5">Wsuń 5</button><button type="button" data-face-nudge="-1">−1</button><button type="button" data-face-nudge="1">+1</button><button type="button" data-face-nudge="5">Wysuń 5</button></div>
-              <label>Skala konturu <input id="face-scale" aria-label="Skala konturu ściany" type="number" min="0.05" max="20" step="0.05" value="1"></label>
+              <label><span id="face-scale-label">Zwęż / rozszerz kontur</span> <input id="face-scale" aria-label="Zwężenie lub rozszerzenie powierzchni" type="number" min="0.02" max="20" step="0.01" value="1"></label>
+              <div class="surface-taper" aria-label="Szybkie zwężanie krawędzi i ścian"><button type="button" data-face-scale="0.02">Ostrze 2%</button><button type="button" data-face-scale="0.5">Zwęź 50%</button><button type="button" data-face-scale="1">100%</button><button type="button" data-face-scale="1.5">Rozszerz 150%</button></div>
               <label>Zakres ściany <input id="face-angle" aria-label="Kąt łączenia powierzchni" type="number" min="0.1" max="89" step="0.5" value="8"><b>°</b></label>
               <button id="face-apply">Zatwierdź powierzchnię</button>
               <button id="face-clear">Wyczyść wybór</button>
-              <small>Dodatnia wartość wysuwa na zewnątrz, ujemna wsuwa do środka. Pomarańczowy podgląd jest natychmiastowy; zatwierdzenie zachowuje wspólną, zamkniętą siatkę. Tryb Krawędź tworzy skos między sąsiednimi ścianami.</small>
+              <small>Dodatnia wartość wysuwa na zewnątrz, ujemna wsuwa do środka. W trybie Ściana skala zwęża cały jej koniec — 2% tworzy niemal ostry czubek lub stożek. W trybie Krawędź skraca albo wydłuża wybraną krawędź. Podgląd jest natychmiastowy, a zatwierdzenie zachowuje zamkniętą siatkę.</small>
             </div>
             <div id="surface-add-options" class="tool-options" hidden>
               <strong>Rysuj obiekt na powierzchni</strong>

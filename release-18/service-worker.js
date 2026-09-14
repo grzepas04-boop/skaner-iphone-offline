@@ -1,4 +1,4 @@
-const CACHE="skaner-studio-offline-release-33-area-cut-transform";
+const CACHE="skaner-studio-offline-release-34-natural-curves-taper-edges";
 const SHELL=["./?offline=1","./manifest.webmanifest","./assets/skaner-icon.png"];
 self.addEventListener("install",event=>event.waitUntil((async()=>{
   const cache=await caches.open(CACHE),response=await fetch("./"),html=await response.text();

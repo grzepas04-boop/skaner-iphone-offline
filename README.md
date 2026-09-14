@@ -13,6 +13,10 @@ i krawędzi pod kursorem, dokładne pełne bryły do 4096 punktów bez wygładza
 ostrych narożników, pręty akceptujące zawracanie o 180° i nakładanie kreski
 oraz narzędzie Obszar: ekranowe przecięcie wielu brył na szczelne fragmenty,
 które można niezależnie przesuwać, obracać i skalować.
+Aktualizacja cache 34 ustawia dla prętów naturalną, gęsto próbkowaną krzywą,
+zwiększa okrągły przekrój do 24 segmentów i dodaje widoczne sterowanie
+zwężaniem ścian oraz krawędzi. Preset 2% tworzy niemal ostry czubek lub stożek,
+natomiast pełne obrysy nadal zachowują dokładne narożniki narysowane przez użytkownika.
 
 Instalowalna aplikacja modelowania 3D działająca lokalnie na iPhonie po pierwszym załadowaniu. Otwórz stronę GitHub Pages w Safari, wybierz **Udostępnij → Dodaj do ekranu początkowego**, a następnie uruchamiaj ją z ikony także bez internetu.
 
