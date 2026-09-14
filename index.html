@@ -11,7 +11,7 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-DiDPpgp1.js"></script>
+    <script type="module" crossorigin src="./assets/index-DvLE0meG.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-Cv2FwAYX.css">
   </head>
   <body>
@@ -28,8 +28,9 @@
         </nav>
         <div class="top-actions">
           <span id="engine-state" class="engine-state">LOKALNY SILNIK GEOMETRII</span>
-          <button id="project-new">Nowy</button><button id="project-open">Otwórz</button><button id="project-save">Zapisz</button><button id="load-sample">Odzyskaj</button><button id="panel-toggle" aria-expanded="false">Panele</button>
+          <button id="project-new">Nowy</button><button id="project-open">Otwórz</button><button id="project-save">Zapisz</button><button id="model-import">Importuj OBJ/STL</button><button id="load-sample">Odzyskaj</button><button id="panel-toggle" aria-expanded="false">Panele</button>
           <input id="project-file" type="file" accept="application/json,.skaner3d" hidden>
+          <input id="model-file" type="file" accept=".obj,.stl,model/obj,model/stl" hidden>
         </div>
       </header>
 
@@ -227,7 +228,7 @@
           <button id="panel-close" class="panel-close" type="button" aria-label="Zamknij panel">×</button>
           <section class="panel-section mobile-project-actions" aria-label="Projekt">
             <div class="section-title"><span>PR</span><div><strong>Projekt</strong><small>Pliki lokalne i odzyskiwanie</small></div></div>
-            <div><button id="mobile-project-new" type="button">Nowy</button><button id="mobile-project-open" type="button">Otwórz</button><button id="mobile-project-save" type="button">Zapisz</button><button id="mobile-load-sample" type="button">Odzyskaj</button></div>
+            <div><button id="mobile-project-new" type="button">Nowy</button><button id="mobile-project-open" type="button">Otwórz</button><button id="mobile-project-save" type="button">Zapisz</button><button id="mobile-model-import" type="button">Importuj OBJ/STL</button><button id="mobile-load-sample" type="button">Odzyskaj</button></div>
           </section>
           <section class="panel-section outliner-section">
             <div class="section-title"><span>SC</span><div><strong>Scena</strong><small>Obiekty projektu</small></div></div>
