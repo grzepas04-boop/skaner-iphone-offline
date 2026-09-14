@@ -11,8 +11,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-DAieksr8.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-ooTadZX3.css">
+    <script type="module" crossorigin src="./assets/index-BAEOlelp.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BO7_13pd.css">
   </head>
   <body>
     <div id="app">
@@ -137,8 +137,8 @@
             </div>
             <div id="face-options" class="tool-options" hidden>
               <strong>Edycja powierzchni</strong>
-              <div class="surface-kind" aria-label="Wybierz ścianę albo krawędź"><button type="button" data-surface-kind="face" aria-pressed="true">▰ ŚCIANA</button><button type="button" data-surface-kind="edge" aria-pressed="false">╱ KRAWĘDŹ MIĘDZY ŚCIANKAMI</button></div>
-              <label>Wybór <select id="surface-selection-mode"><option value="face">Cała płaszczyzna</option><option value="triangle">Pojedynczy trójkąt</option><option value="edge">Krawędź trójkąta</option></select></label>
+              <div class="surface-kind" aria-label="Wybierz ścianę, krawędź albo wierzchołek"><button type="button" data-surface-kind="face" aria-pressed="true">▰ ŚCIANA</button><button type="button" data-surface-kind="edge" aria-pressed="false">╱ KRAWĘDŹ</button><button type="button" data-surface-kind="vertex" aria-pressed="false">◆ WIERZCHOŁEK</button></div>
+              <label>Wybór <select id="surface-selection-mode"><option value="face">Cała płaszczyzna</option><option value="triangle">Pojedynczy trójkąt</option><option value="edge">Krawędź trójkąta</option><option value="vertex">Wierzchołek siatki</option></select></label>
               <label>Wypchnij <input id="face-offset" aria-label="Wypchnięcie ściany w mm" type="number" min="-100000" max="100000" step="0.1" value="5"><b>mm</b></label>
               <div class="surface-nudge" aria-label="Szybkie wsuwanie i wysuwanie"><button type="button" data-face-nudge="-5">Wsuń 5</button><button type="button" data-face-nudge="-1">−1</button><button type="button" data-face-nudge="1">+1</button><button type="button" data-face-nudge="5">Wysuń 5</button></div>
               <label><span id="face-scale-label">Zwęż / rozszerz kontur</span> <input id="face-scale" aria-label="Zwężenie lub rozszerzenie powierzchni" type="number" min="0.02" max="20" step="0.01" value="1"></label>
@@ -146,7 +146,7 @@
               <label>Zakres ściany <input id="face-angle" aria-label="Kąt łączenia powierzchni" type="number" min="0.1" max="89" step="0.5" value="8"><b>°</b></label>
               <button id="face-apply">Zatwierdź powierzchnię</button>
               <button id="face-clear">Wyczyść wybór</button>
-              <small>Najpierw wybierz duży przycisk ŚCIANA albo KRAWĘDŹ, potem dotknij powierzchni blisko żądanej linii — program sam chwyci najbliższą krawędź między ściankami. Dodatnia wartość wysuwa na zewnątrz, ujemna wsuwa. Skala 2% zwęża wybrany koniec niemal do ostrza. Podgląd jest natychmiastowy, a zatwierdzenie zachowuje zamkniętą siatkę.</small>
+              <small>Wybierz ŚCIANĘ, KRAWĘDŹ albo WIERZCHOŁEK i dotknij powierzchni blisko elementu. Wierzchołek można wysunąć niebieską strzałką, tworząc precyzyjny ostry czubek. Podgląd jest natychmiastowy, a zatwierdzenie zachowuje zamkniętą siatkę.</small>
             </div>
             <div id="surface-add-options" class="tool-options" hidden>
               <strong>Rysuj obiekt na powierzchni</strong>

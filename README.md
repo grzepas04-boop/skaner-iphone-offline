@@ -1,6 +1,6 @@
 # Skaner Studio — iPhone Offline
 
-Aktualne wydanie: **37** — gładki podgląd i osobna, gęsta siatka edycyjna trójkątów; wybór pojedynczego trójkąta lub jego krawędzi; wygładzanie do 64× ścian oraz miękkie, geodezyjne wysuwanie/wsuwanie bez rozrywania zamkniętej bryły.
+Aktualne wydanie: **38** — bezpośrednie chwytanie i wysuwanie wierzchołków, stabilne ciasne łuki prętów przez sumę gładkich kapsuł, dokładny obrys pełnej bryły 1:1 oraz naprawione ekranowe cięcie narzędziem Obszar.
 
 Aktualne wydanie: **release 18**. Bezpośredni adres aplikacji:
 `https://grzepas04-boop.github.io/skaner-iphone-offline/release-18/?offline=1`
@@ -27,6 +27,11 @@ ale w trybie Ściana / krawędź pokazuje pełną triangulację możliwą do wsk
 Pręty dostają gęste pierścienie także na prostych odcinkach, a deformacja rozkłada
 się na pięciu sąsiednich pierścieniach i automatycznie ogranicza tylko wartość
 podglądu, jeśli większa zmiana odwróciłaby trójkąty.
+Aktualizacja cache 38 dodaje trzeci tryb edycji WIERZCHOŁEK z podświetleniem
+i niebieskim uchwytem ostrego punktu. Pełny obrys nie jest już wygładzany,
+natomiast pręt przy ciasnym zagięciu lub nakładaniu odcinków przechodzi przez
+stabilną sumę kapsuł. Obszar używa tych samych nazw operacji boolean w wersji
+desktopowej i offline, więc prostokąt przecina wszystkie trafione bryły.
 
 Instalowalna aplikacja modelowania 3D działająca lokalnie na iPhonie po pierwszym załadowaniu. Otwórz stronę GitHub Pages w Safari, wybierz **Udostępnij → Dodaj do ekranu początkowego**, a następnie uruchamiaj ją z ikony także bez internetu.
 
