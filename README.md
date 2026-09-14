@@ -17,6 +17,9 @@ Aktualizacja cache 34 ustawia dla prętów naturalną, gęsto próbkowaną krzyw
 zwiększa okrągły przekrój do 24 segmentów i dodaje widoczne sterowanie
 zwężaniem ścian oraz krawędzi. Preset 2% tworzy niemal ostry czubek lub stożek,
 natomiast pełne obrysy nadal zachowują dokładne narożniki narysowane przez użytkownika.
+Aktualizacja cache 35 dodaje duży, jednoznaczny przełącznik ŚCIANA / KRAWĘDŹ
+MIĘDZY ŚCIANKAMI. Na iPhonie krawędź jest chwytana już przy dotknięciu
+powierzchni blisko linii, bez konieczności trafiania palcem w cienki piksel.
 
 Instalowalna aplikacja modelowania 3D działająca lokalnie na iPhonie po pierwszym załadowaniu. Otwórz stronę GitHub Pages w Safari, wybierz **Udostępnij → Dodaj do ekranu początkowego**, a następnie uruchamiaj ją z ikony także bez internetu.
 

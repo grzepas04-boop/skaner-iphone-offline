@@ -11,8 +11,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-CXeSbu-V.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DG6XhFZr.css">
+    <script type="module" crossorigin src="./assets/index-Bl_jKmhq.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BL-sv4A9.css">
   </head>
   <body>
     <div id="app">
@@ -48,7 +48,7 @@
               <button id="tool-move" title="Przesuń aktywną bryłę w osiach XYZ">↔ <span>Przesuń</span></button>
               <button id="tool-rotate" title="Obróć aktywną bryłę wokół osi XYZ">⟳ <span>Obróć</span></button>
               <button id="tool-scale" title="Skaluj aktywną bryłę proporcjonalnie lub według osi">⤢ <span>Skaluj</span></button>
-              <button id="tool-face" title="Zaznacz ścianę i wypchnij albo skaluj jej kontur">▱ <span>Ściana</span></button>
+              <button id="tool-face" title="Zaznacz ścianę albo linię między ściankami i nadaj bryle kształt">▱ <span>Ściana / krawędź</span></button>
               <button id="tool-area" title="Wytnij ekranowym obszarem fragment jednej lub wielu brył">▣ <span>Obszar</span></button>
               <button id="tool-surface-add" title="Wyciągnij nową bryłę bezpośrednio z powierzchni">⬡ <span>Na bryle</span></button>
               <button id="tool-array" title="Duplikuj albo utwórz szyk liniowy lub kołowy">⠿ <span>Szyk</span></button>
@@ -135,6 +135,7 @@
             </div>
             <div id="face-options" class="tool-options" hidden>
               <strong>Edycja powierzchni</strong>
+              <div class="surface-kind" aria-label="Wybierz ścianę albo krawędź"><button type="button" data-surface-kind="face" aria-pressed="true">▰ ŚCIANA</button><button type="button" data-surface-kind="edge" aria-pressed="false">╱ KRAWĘDŹ MIĘDZY ŚCIANKAMI</button></div>
               <label>Wybór <select id="surface-selection-mode"><option value="face">Cała ściana</option><option value="edge">Krawędź ściany</option></select></label>
               <label>Wypchnij <input id="face-offset" aria-label="Wypchnięcie ściany w mm" type="number" min="-100000" max="100000" step="0.1" value="5"><b>mm</b></label>
               <div class="surface-nudge" aria-label="Szybkie wsuwanie i wysuwanie"><button type="button" data-face-nudge="-5">Wsuń 5</button><button type="button" data-face-nudge="-1">−1</button><button type="button" data-face-nudge="1">+1</button><button type="button" data-face-nudge="5">Wysuń 5</button></div>
@@ -143,7 +144,7 @@
               <label>Zakres ściany <input id="face-angle" aria-label="Kąt łączenia powierzchni" type="number" min="0.1" max="89" step="0.5" value="8"><b>°</b></label>
               <button id="face-apply">Zatwierdź powierzchnię</button>
               <button id="face-clear">Wyczyść wybór</button>
-              <small>Dodatnia wartość wysuwa na zewnątrz, ujemna wsuwa do środka. W trybie Ściana skala zwęża cały jej koniec — 2% tworzy niemal ostry czubek lub stożek. W trybie Krawędź skraca albo wydłuża wybraną krawędź. Podgląd jest natychmiastowy, a zatwierdzenie zachowuje zamkniętą siatkę.</small>
+              <small>Najpierw wybierz duży przycisk ŚCIANA albo KRAWĘDŹ, potem dotknij powierzchni blisko żądanej linii — program sam chwyci najbliższą krawędź między ściankami. Dodatnia wartość wysuwa na zewnątrz, ujemna wsuwa. Skala 2% zwęża wybrany koniec niemal do ostrza. Podgląd jest natychmiastowy, a zatwierdzenie zachowuje zamkniętą siatkę.</small>
             </div>
             <div id="surface-add-options" class="tool-options" hidden>
               <strong>Rysuj obiekt na powierzchni</strong>
