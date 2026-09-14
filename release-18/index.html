@@ -11,8 +11,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-D2MK9unQ.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Cv2FwAYX.css">
+    <script type="module" crossorigin src="./assets/index-BiiIurYD.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DsIur3l6.css">
   </head>
   <body>
     <div id="app">
@@ -49,6 +49,7 @@
               <button id="tool-rotate" title="Obróć aktywną bryłę wokół osi XYZ">⟳ <span>Obróć</span></button>
               <button id="tool-scale" title="Skaluj aktywną bryłę proporcjonalnie lub według osi">⤢ <span>Skaluj</span></button>
               <button id="tool-face" title="Zaznacz ścianę i wypchnij albo skaluj jej kontur">▱ <span>Ściana</span></button>
+              <button id="tool-area" title="Wytnij ekranowym obszarem fragment jednej lub wielu brył">▣ <span>Obszar</span></button>
               <button id="tool-surface-add" title="Wyciągnij nową bryłę bezpośrednio z powierzchni">⬡ <span>Na bryle</span></button>
               <button id="tool-array" title="Duplikuj albo utwórz szyk liniowy lub kołowy">⠿ <span>Szyk</span></button>
               <button id="tool-copy" title="Skopiuj wszystkie zaznaczone obiekty">⧉ <span>Kopiuj</span></button>
@@ -67,6 +68,11 @@
               <button id="select-clear">Wyczyść zaznaczenie</button>
               <small id="select-count">Zaznaczono: 0</small>
               <small>Komputer: Ctrl/Shift + klik. iPhone: włącz „Wybór wielu”, a potem dotykaj kolejnych obiektów.</small>
+            </div>
+            <div id="area-options" class="tool-options" hidden>
+              <strong>Obszar przez bryłę</strong>
+              <button id="area-cancel" type="button">Anuluj obszar</button>
+              <small>Przeciągnij prostokąt palcem lub LPM. Jego granice przetną wszystkie widoczne, odblokowane bryły; wycięte fragmenty zostaną zaznaczone i otrzymają własne osie do przesuwania, obracania i skalowania.</small>
             </div>
             <div id="draw-options" class="tool-options" hidden>
               <label>Tryb
@@ -204,7 +210,7 @@
               <small>Wycinak pozostaje osobnym obiektem: przesuń, obróć i skaluj go, a dopiero potem kliknij Wykonaj boolean.</small>
             </div>
           </div>
-          <div id="viewport" aria-label="Podgląd modelu 3D"></div>
+          <div id="viewport" aria-label="Podgląd modelu 3D"><div id="area-marquee" class="area-marquee" hidden></div></div>
           <div id="sketch-plane-hud" class="sketch-plane-hud" hidden><span>AKTYWNA PŁASZCZYZNA</span><strong id="sketch-plane-label">AUTO</strong><small id="sketch-plane-normal">N 0.00 / 0.00 / 1.00</small></div>
           <div class="axis-widget" aria-label="Sterowanie orientacją kamery"><button id="axis-view-x" class="x" title="Widok wzdłuż osi X">X</button><button id="axis-view-y" class="y" title="Widok wzdłuż osi Y">Y</button><button id="axis-view-z" class="z" title="Widok wzdłuż osi Z">Z</button><button id="axis-view-iso" class="iso" title="Widok izometryczny">◆</button></div>
           <div id="empty-state" class="empty-state"><div class="scan-orbit">◎</div><strong>Utwórz bryłę albo narysuj kształt 3D</strong><small>Komputer: LPM/PPM/kółko · iPhone: 1 palec narzędzie, 2 palce kamera</small></div>

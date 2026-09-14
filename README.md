@@ -6,11 +6,13 @@ Aktualne wydanie: **release 18**. Bezpośredni adres aplikacji:
 Wydanie 18 dodaje profesjonalny układ mobilny bez poziomego paska strony,
 panel projektu, automatyczne przygotowanie siatki przy pierwszym ruchu dłuta,
 adaptacyjną topologię, warstwy rzeźby, stabilne domykanie obrysów, poprawne
-płaszczyzny szkicu i pełny eksport OBJ/STL/GLB. Aktualizacja cache 32 dodaje
+płaszczyzny szkicu i pełny eksport OBJ/STL/GLB. Aktualizacja cache 33 dodaje
 pełnosiatkowe wygładzanie Loop z podglądem i ochroną ostrych krawędzi,
 osobne narzędzia Kopiuj i Lustro X/Y/Z, import OBJ/STL, podświetlanie ścian
 i krawędzi pod kursorem, dokładne pełne bryły do 4096 punktów bez wygładzania
-ostrych narożników oraz pręty akceptujące zawracanie o 180° i nakładanie kreski.
+ostrych narożników, pręty akceptujące zawracanie o 180° i nakładanie kreski
+oraz narzędzie Obszar: ekranowe przecięcie wielu brył na szczelne fragmenty,
+które można niezależnie przesuwać, obracać i skalować.
 
 Instalowalna aplikacja modelowania 3D działająca lokalnie na iPhonie po pierwszym załadowaniu. Otwórz stronę GitHub Pages w Safari, wybierz **Udostępnij → Dodaj do ekranu początkowego**, a następnie uruchamiaj ją z ikony także bez internetu.
 
