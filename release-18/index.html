@@ -11,8 +11,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-Bl_jKmhq.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BL-sv4A9.css">
+    <script type="module" crossorigin src="./assets/index--tewgmG4.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-ooTadZX3.css">
   </head>
   <body>
     <div id="app">
@@ -86,6 +86,7 @@
                 <select id="draw-profile"><option value="round">Okrąg</option><option value="square">Kwadrat</option><option value="hex">Heksagon</option><option value="star">Gwiazda</option><option value="ribbon">Taśma</option></select>
               </label>
               <label>Przebieg <select id="draw-path-mode"><option value="smooth" selected>Naturalna gładka</option><option value="exact">Techniczny 1:1</option></select></label>
+              <label class="draw-smoothing-control">Gładkość <input id="draw-smoothing" aria-label="Poziom wygładzenia gestu" type="range" min="0" max="100" step="1" value="78"><output id="draw-smoothing-value">78%</output></label>
               <label>Start <input id="draw-diameter" type="number" min="0.03" max="50" step="0.01" value="6"><b>mm</b></label>
               <label>Koniec <input id="draw-diameter-end" type="number" min="0.03" max="50" step="0.01" value="6"><b>mm</b></label>
               <label>Skręt <input id="draw-twist" type="number" min="-36000" max="36000" step="1" value="0"><b>°</b></label>
@@ -126,12 +127,13 @@
               <strong>Wygładź całą bryłę</strong>
               <label>Poziom podziału <select id="smooth-level"><option value="1" selected>1 · 4× więcej ścian</option><option value="2">2 · 16× więcej ścian</option></select></label>
               <label>Siła <input id="smooth-strength" type="number" min="0" max="1" step="0.05" value="0.65"></label>
+              <label>Przejścia jakości <input id="smooth-passes" type="number" min="1" max="12" step="1" value="6"></label>
               <label><input id="smooth-preserve-sharp" type="checkbox"> Chroń ostre krawędzie</label>
               <label>Kąt ochrony <input id="smooth-sharp-angle" type="number" min="1" max="179" step="1" value="50"><b>°</b></label>
               <button id="smooth-preview" type="button">Podgląd wygładzenia</button>
               <button id="smooth-commit" type="button" disabled>Zatwierdź</button>
               <button id="smooth-cancel" type="button" disabled>Anuluj</button>
-              <small>Program dzieli każdy trójkąt na cztery i wygładza nowe wierzchołki metodą Loop. To prawdziwa, eksportowana geometria; poziom 2 może być cięższy na telefonie.</small>
+              <small>Loop zagęszcza siatkę, a stabilizacja Taubina usuwa uskoki bez zapadania objętości. To prawdziwa, eksportowana geometria; poziom 2 może być cięższy na telefonie.</small>
             </div>
             <div id="face-options" class="tool-options" hidden>
               <strong>Edycja powierzchni</strong>

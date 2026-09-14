@@ -1,5 +1,7 @@
 # Skaner Studio — iPhone Offline
 
+Aktualne wydanie: **36** — płynny gest Chaikina bez samoczynnych pętli, ciągłe pręty bez pierścieni, poprawne normalne ostrych ścian, wygładzanie Loop + Taubin oraz bezpieczne wysuwanie/wsuwanie krawędzi.
+
 Aktualne wydanie: **release 18**. Bezpośredni adres aplikacji:
 `https://grzepas04-boop.github.io/skaner-iphone-offline/release-18/?offline=1`
 
