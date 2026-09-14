@@ -11,8 +11,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-Dl1YP2N2.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-pU83hy89.css">
+    <script type="module" crossorigin src="./assets/index-BBvkzRPZ.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Cv2FwAYX.css">
   </head>
   <body>
     <div id="app">
@@ -37,7 +37,7 @@
         <section class="viewport-shell">
           <div class="viewport-toolbar">
             <div class="tool-group camera-views"><button id="view-main" class="active">GŁÓWNY</button><button id="view-iso">ISO</button><button id="view-front">PRZÓD</button><button id="view-right">BOK</button><button id="view-top">GÓRA</button><button id="view-bottom">DÓŁ</button></div>
-            <div class="tool-group"><button id="shade-solid" class="active">STUDIO</button><button id="shade-matcap">RZEŹBA</button><button id="shade-xray">X-RAY</button><button id="shade-wire">SIATKA</button><button id="toggle-grid" class="active">GRID</button></div>
+            <div class="tool-group"><button id="shade-solid" class="active">STUDIO</button><button id="shade-matcap">RZEŹBA</button><button id="shade-xray">X-RAY</button><button id="shade-wire">SIATKA</button><button id="toggle-grid">GRID</button></div>
           </div>
           <div class="modeling-toolbar" aria-label="Narzędzia modelowania">
             <div class="modeling-tools">
@@ -69,7 +69,7 @@
                 <select id="draw-mode"><option value="rod">Pręt — gotowy po puszczeniu</option><option value="outline">Pełna bryła — zamknij obrys</option></select>
               </label>
               <label>Płaszczyzna
-                <select id="draw-plane-mode"><option value="auto">Auto — na widocznej powierzchni</option><option value="view">Równolegle do ekranu</option><option value="surface">Stycznie do klikniętej ściany</option><option value="xy">Świat XY</option><option value="xz">Świat XZ</option><option value="yz">Świat YZ</option></select>
+                <select id="draw-plane-mode"><option value="auto">Auto — najbliższa płaszczyzna kamery</option><option value="view">Równolegle do ekranu</option><option value="surface">Stycznie do klikniętej ściany</option><option value="xy">Świat XY</option><option value="xz">Świat XZ</option><option value="yz">Świat YZ</option></select>
               </label>
               <label>Odsunięcie <input id="draw-plane-offset" type="number" min="0" max="1000" step="0.05" value="0.15"><b>mm</b></label>
               <label>Profil
@@ -83,7 +83,7 @@
               <label><input id="draw-continue" type="checkbox"> Kontynuuj po puszczeniu (rysowanie wieloosiowe)</label>
               <button id="draw-finish">Zakończ kreskę</button>
               <button id="draw-cancel">Anuluj</button>
-              <small>Pomarańczowa kratka pokazuje aktywną płaszczyznę. Auto kotwiczy ją na pierwszej widocznej powierzchni, więc szkic nie trafia pod model. Włącz kontynuację tylko do rysowania wieloosiowego.</small>
+              <small>Auto wybiera XY, XZ albo YZ według kierunku kamery i kotwiczy szkic na widocznej stronie modelu. Płaszczyznę pokazuje dyskretny opis bez dodatkowej kratki.</small>
             </div>
             <div id="primitive-options" class="tool-options" hidden>
               <strong>Interaktywna bryła</strong>
@@ -184,7 +184,7 @@
           </div>
           <div id="viewport" aria-label="Podgląd modelu 3D"></div>
           <div id="sketch-plane-hud" class="sketch-plane-hud" hidden><span>AKTYWNA PŁASZCZYZNA</span><strong id="sketch-plane-label">AUTO</strong><small id="sketch-plane-normal">N 0.00 / 0.00 / 1.00</small></div>
-          <div class="axis-widget"><i class="x">X</i><i class="y">Y</i><i class="z">Z</i></div>
+          <div class="axis-widget" aria-label="Sterowanie orientacją kamery"><button id="axis-view-x" class="x" title="Widok wzdłuż osi X">X</button><button id="axis-view-y" class="y" title="Widok wzdłuż osi Y">Y</button><button id="axis-view-z" class="z" title="Widok wzdłuż osi Z">Z</button><button id="axis-view-iso" class="iso" title="Widok izometryczny">◆</button></div>
           <div id="empty-state" class="empty-state"><div class="scan-orbit">◎</div><strong>Utwórz bryłę albo narysuj kształt 3D</strong><small>Komputer: LPM/PPM/kółko · iPhone: 1 palec narzędzie, 2 palce kamera</small></div>
           <div id="progress" class="progress" hidden><div class="spinner"></div><strong>Rekonstrukcja siatki…</strong><small>Analiza masek, pole SDF i kontrola zamknięcia</small></div>
           <section id="export-workspace" class="export-workspace" hidden>
