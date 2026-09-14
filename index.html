@@ -11,8 +11,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-Bl_jKmhq.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BL-sv4A9.css">
+    <script type="module" crossorigin src="./assets/index-BwEhMXcT.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-p553ni_t.css">
   </head>
   <body>
     <div id="app">
@@ -86,8 +86,9 @@
                 <select id="draw-profile"><option value="round">Okrąg</option><option value="square">Kwadrat</option><option value="hex">Heksagon</option><option value="star">Gwiazda</option><option value="ribbon">Taśma</option></select>
               </label>
               <label>Przebieg <select id="draw-path-mode"><option value="smooth" selected>Naturalna gładka</option><option value="exact">Techniczny 1:1</option></select></label>
-              <label>Start <input id="draw-diameter" type="number" min="0.03" max="50" step="0.01" value="6"><b>mm</b></label>
-              <label>Koniec <input id="draw-diameter-end" type="number" min="0.03" max="50" step="0.01" value="6"><b>mm</b></label>
+              <label class="draw-smoothing-control">Gładkość <input id="draw-smoothing" aria-label="Poziom wygładzenia gestu" type="range" min="0" max="100" step="1" value="78"><output id="draw-smoothing-value">78%</output></label>
+              <label class="thickness-slider">Grubość początku <input id="draw-diameter" aria-label="Grubość początku rysika" type="range" min="0.1" max="50" step="0.1" value="6"><output id="draw-diameter-value">6,0 mm</output></label>
+              <label class="thickness-slider">Grubość końca <input id="draw-diameter-end" aria-label="Grubość końca rysika" type="range" min="0.1" max="50" step="0.1" value="6"><output id="draw-diameter-end-value">6,0 mm</output></label>
               <label>Skręt <input id="draw-twist" type="number" min="-36000" max="36000" step="1" value="0"><b>°</b></label>
               <label>Grubość taśmy <input id="draw-ribbon-thickness" type="number" min="0.03" max="50" step="0.01" value="1.2"><b>mm</b></label>
               <label><input id="draw-continue" type="checkbox"> Kontynuuj po puszczeniu (rysowanie wieloosiowe)</label>
@@ -124,19 +125,20 @@
             </div>
             <div id="smooth-options" class="tool-options" hidden>
               <strong>Wygładź całą bryłę</strong>
-              <label>Poziom podziału <select id="smooth-level"><option value="1" selected>1 · 4× więcej ścian</option><option value="2">2 · 16× więcej ścian</option></select></label>
+              <label>Poziom podziału <select id="smooth-level"><option value="1" selected>1 · 4× więcej ścian</option><option value="2">2 · 16× więcej ścian</option><option value="3">3 · 64× więcej ścian (High)</option></select></label>
               <label>Siła <input id="smooth-strength" type="number" min="0" max="1" step="0.05" value="0.65"></label>
+              <label>Przejścia jakości <input id="smooth-passes" type="number" min="1" max="12" step="1" value="6"></label>
               <label><input id="smooth-preserve-sharp" type="checkbox"> Chroń ostre krawędzie</label>
               <label>Kąt ochrony <input id="smooth-sharp-angle" type="number" min="1" max="179" step="1" value="50"><b>°</b></label>
               <button id="smooth-preview" type="button">Podgląd wygładzenia</button>
               <button id="smooth-commit" type="button" disabled>Zatwierdź</button>
               <button id="smooth-cancel" type="button" disabled>Anuluj</button>
-              <small>Program dzieli każdy trójkąt na cztery i wygładza nowe wierzchołki metodą Loop. To prawdziwa, eksportowana geometria; poziom 2 może być cięższy na telefonie.</small>
+              <small>Loop zagęszcza siatkę, a stabilizacja Taubina usuwa uskoki bez zapadania objętości. To prawdziwa, eksportowana geometria; poziom 3 (64×) może być cięższy na telefonie.</small>
             </div>
             <div id="face-options" class="tool-options" hidden>
               <strong>Edycja powierzchni</strong>
-              <div class="surface-kind" aria-label="Wybierz ścianę albo krawędź"><button type="button" data-surface-kind="face" aria-pressed="true">▰ ŚCIANA</button><button type="button" data-surface-kind="edge" aria-pressed="false">╱ KRAWĘDŹ MIĘDZY ŚCIANKAMI</button></div>
-              <label>Wybór <select id="surface-selection-mode"><option value="face">Cała ściana</option><option value="edge">Krawędź ściany</option></select></label>
+              <div class="surface-kind" aria-label="Wybierz ścianę, krawędź albo wierzchołek"><button type="button" data-surface-kind="face" aria-pressed="true">▰ ŚCIANA</button><button type="button" data-surface-kind="edge" aria-pressed="false">╱ KRAWĘDŹ</button><button type="button" data-surface-kind="vertex" aria-pressed="false">◆ WIERZCHOŁEK</button></div>
+              <label>Wybór <select id="surface-selection-mode"><option value="face">Cała płaszczyzna</option><option value="triangle">Pojedynczy trójkąt</option><option value="edge">Krawędź trójkąta</option><option value="vertex">Wierzchołek siatki</option></select></label>
               <label>Wypchnij <input id="face-offset" aria-label="Wypchnięcie ściany w mm" type="number" min="-100000" max="100000" step="0.1" value="5"><b>mm</b></label>
               <div class="surface-nudge" aria-label="Szybkie wsuwanie i wysuwanie"><button type="button" data-face-nudge="-5">Wsuń 5</button><button type="button" data-face-nudge="-1">−1</button><button type="button" data-face-nudge="1">+1</button><button type="button" data-face-nudge="5">Wysuń 5</button></div>
               <label><span id="face-scale-label">Zwęż / rozszerz kontur</span> <input id="face-scale" aria-label="Zwężenie lub rozszerzenie powierzchni" type="number" min="0.02" max="20" step="0.01" value="1"></label>
@@ -144,7 +146,7 @@
               <label>Zakres ściany <input id="face-angle" aria-label="Kąt łączenia powierzchni" type="number" min="0.1" max="89" step="0.5" value="8"><b>°</b></label>
               <button id="face-apply">Zatwierdź powierzchnię</button>
               <button id="face-clear">Wyczyść wybór</button>
-              <small>Najpierw wybierz duży przycisk ŚCIANA albo KRAWĘDŹ, potem dotknij powierzchni blisko żądanej linii — program sam chwyci najbliższą krawędź między ściankami. Dodatnia wartość wysuwa na zewnątrz, ujemna wsuwa. Skala 2% zwęża wybrany koniec niemal do ostrza. Podgląd jest natychmiastowy, a zatwierdzenie zachowuje zamkniętą siatkę.</small>
+              <small>Wybierz ŚCIANĘ, KRAWĘDŹ albo WIERZCHOŁEK i dotknij powierzchni blisko elementu. Wierzchołek można wysunąć niebieską strzałką, tworząc precyzyjny ostry czubek. Podgląd jest natychmiastowy, a zatwierdzenie zachowuje zamkniętą siatkę.</small>
             </div>
             <div id="surface-add-options" class="tool-options" hidden>
               <strong>Rysuj obiekt na powierzchni</strong>
@@ -152,7 +154,7 @@
               <label>Szerokość <input id="surface-add-size" type="number" min="0.1" max="1000" step="0.1" value="10"><b>mm</b></label>
               <label>Wyciągnięcie <input id="surface-add-height" type="number" min="0.1" max="1000" step="0.1" value="15"><b>mm</b></label>
               <label><input id="surface-add-union" type="checkbox" checked> Od razu połącz z bryłą</label>
-              <label><input id="surface-add-multi" type="checkbox"> Zaznacz wiele punktów / ścian</label>
+              <label><input id="surface-add-multi" type="checkbox" checked> Zaznacz wiele punktów / ścian</label>
               <label>Kopie / punkt <input id="surface-add-copies" type="number" min="1" max="64" step="1" value="1"></label>
               <label>Rozrzut <input id="surface-add-spread" type="number" min="0" max="80" step="1" value="12"><b>°</b></label>
               <label>Różnica długości <input id="surface-add-variation" type="number" min="0" max="80" step="1" value="15"><b>%</b></label>

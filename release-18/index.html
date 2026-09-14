@@ -11,8 +11,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-BAEOlelp.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BO7_13pd.css">
+    <script type="module" crossorigin src="./assets/index-BwEhMXcT.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-p553ni_t.css">
   </head>
   <body>
     <div id="app">
@@ -87,8 +87,8 @@
               </label>
               <label>Przebieg <select id="draw-path-mode"><option value="smooth" selected>Naturalna gładka</option><option value="exact">Techniczny 1:1</option></select></label>
               <label class="draw-smoothing-control">Gładkość <input id="draw-smoothing" aria-label="Poziom wygładzenia gestu" type="range" min="0" max="100" step="1" value="78"><output id="draw-smoothing-value">78%</output></label>
-              <label>Start <input id="draw-diameter" type="number" min="0.03" max="50" step="0.01" value="6"><b>mm</b></label>
-              <label>Koniec <input id="draw-diameter-end" type="number" min="0.03" max="50" step="0.01" value="6"><b>mm</b></label>
+              <label class="thickness-slider">Grubość początku <input id="draw-diameter" aria-label="Grubość początku rysika" type="range" min="0.1" max="50" step="0.1" value="6"><output id="draw-diameter-value">6,0 mm</output></label>
+              <label class="thickness-slider">Grubość końca <input id="draw-diameter-end" aria-label="Grubość końca rysika" type="range" min="0.1" max="50" step="0.1" value="6"><output id="draw-diameter-end-value">6,0 mm</output></label>
               <label>Skręt <input id="draw-twist" type="number" min="-36000" max="36000" step="1" value="0"><b>°</b></label>
               <label>Grubość taśmy <input id="draw-ribbon-thickness" type="number" min="0.03" max="50" step="0.01" value="1.2"><b>mm</b></label>
               <label><input id="draw-continue" type="checkbox"> Kontynuuj po puszczeniu (rysowanie wieloosiowe)</label>
@@ -154,7 +154,7 @@
               <label>Szerokość <input id="surface-add-size" type="number" min="0.1" max="1000" step="0.1" value="10"><b>mm</b></label>
               <label>Wyciągnięcie <input id="surface-add-height" type="number" min="0.1" max="1000" step="0.1" value="15"><b>mm</b></label>
               <label><input id="surface-add-union" type="checkbox" checked> Od razu połącz z bryłą</label>
-              <label><input id="surface-add-multi" type="checkbox"> Zaznacz wiele punktów / ścian</label>
+              <label><input id="surface-add-multi" type="checkbox" checked> Zaznacz wiele punktów / ścian</label>
               <label>Kopie / punkt <input id="surface-add-copies" type="number" min="1" max="64" step="1" value="1"></label>
               <label>Rozrzut <input id="surface-add-spread" type="number" min="0" max="80" step="1" value="12"><b>°</b></label>
               <label>Różnica długości <input id="surface-add-variation" type="number" min="0" max="80" step="1" value="15"><b>%</b></label>
