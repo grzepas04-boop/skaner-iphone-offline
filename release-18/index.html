@@ -11,8 +11,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-BwEhMXcT.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-p553ni_t.css">
+    <script type="module" crossorigin src="./assets/index-BkRzp7eb.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-B_wIqdai.css">
   </head>
   <body>
     <div id="app">
@@ -28,7 +28,7 @@
         </nav>
         <div class="top-actions">
           <span id="engine-state" class="engine-state">LOKALNY SILNIK GEOMETRII</span>
-          <button id="project-new">Nowy</button><button id="project-open">Otwórz</button><button id="project-save">Zapisz</button><button id="model-import">Importuj OBJ/STL</button><button id="load-sample">Odzyskaj</button><button id="panel-toggle" aria-expanded="false">Panele</button>
+          <button id="project-new">Nowy</button><button id="project-open">Otwórz</button><button id="project-save">Zapisz</button><button id="model-import">Importuj OBJ/STL</button><button id="load-sample">Odzyskaj</button><button id="theme-toggle" title="Przełącz jasny / ciemny">☀ Jasny</button><button id="panel-toggle" aria-expanded="false">Panele</button>
           <input id="project-file" type="file" accept="application/json,.skaner3d" hidden>
           <input id="model-file" type="file" accept=".obj,.stl,model/obj,model/stl" hidden>
         </div>
@@ -38,29 +38,30 @@
         <section class="viewport-shell">
           <div class="viewport-toolbar">
             <div class="tool-group camera-views"><button id="view-main" class="active">GŁÓWNY</button><button id="view-iso">ISO</button><button id="view-front">PRZÓD</button><button id="view-right">BOK</button><button id="view-top">GÓRA</button><button id="view-bottom">DÓŁ</button></div>
-            <div class="tool-group"><button id="shade-solid" class="active">STUDIO</button><button id="shade-matcap">RZEŹBA</button><button id="shade-xray">X-RAY</button><button id="shade-wire">SIATKA</button><button id="toggle-grid">GRID</button></div>
+            <div class="tool-group"><button id="shade-solid" class="active">STUDIO</button><button id="shade-matcap">RZEŹBA</button><button id="shade-xray">X-RAY</button><button id="shade-wire">SIATKA</button><button id="toggle-grid">GRID</button><button id="quality-toggle" title="Jakość renderu: auto / wysoka / niska">JAKOŚĆ AUTO</button></div>
           </div>
           <div class="modeling-toolbar" aria-label="Narzędzia modelowania">
             <div class="modeling-tools">
-              <button id="tool-select" class="active" title="Obrót i wybór">⌖ <span>Wybierz</span></button>
-              <button id="tool-draw" title="Narysuj pręt albo pełny obrys 3D">✎ <span>Rysuj 3D</span></button>
-              <button id="tool-add-primitive" title="Dodaj prymityw">＋ <span>Bryła</span></button>
-              <button id="tool-move" title="Przesuń aktywną bryłę w osiach XYZ">↔ <span>Przesuń</span></button>
-              <button id="tool-rotate" title="Obróć aktywną bryłę wokół osi XYZ">⟳ <span>Obróć</span></button>
-              <button id="tool-scale" title="Skaluj aktywną bryłę proporcjonalnie lub według osi">⤢ <span>Skaluj</span></button>
-              <button id="tool-face" title="Zaznacz ścianę albo linię między ściankami i nadaj bryle kształt">▱ <span>Ściana / krawędź</span></button>
-              <button id="tool-area" title="Wytnij ekranowym obszarem fragment jednej lub wielu brył">▣ <span>Obszar</span></button>
-              <button id="tool-surface-add" title="Wyciągnij nową bryłę bezpośrednio z powierzchni">⬡ <span>Na bryle</span></button>
-              <button id="tool-array" title="Duplikuj albo utwórz szyk liniowy lub kołowy">⠿ <span>Szyk</span></button>
-              <button id="tool-copy" title="Skopiuj wszystkie zaznaczone obiekty">⧉ <span>Kopiuj</span></button>
-              <button id="tool-mirror" title="Odbij geometrię względem lokalnej osi">◩ <span>Lustro</span></button>
-              <button id="tool-measure" title="Zmierz odległość pomiędzy punktami powierzchni">⌁ <span>Pomiar</span></button>
-              <button id="tool-boolean" title="Połącz dwie rewizje bryłowe">∪ <span>Boolean</span></button>
-              <button id="tool-sculpt" title="Rzeźb powierzchnię w milimetrach">◉ <span>Rzeźba</span></button>
-              <button id="tool-smooth" title="Zagęść i wygładź całą bryłę prawdziwymi ścianami">◌ <span>Wygładź</span></button>
-              <button id="tool-delete" class="danger" title="Usuń zaznaczony obiekt">⌫ <span>Usuń</span></button>
-              <button id="tool-undo" title="Cofnij ostatnią lokalną zmianę" disabled>↶ <span>Cofnij</span></button>
-              <button id="tool-redo" title="Ponów ostatnią cofniętą zmianę" disabled>↷ <span>Ponów</span></button>
+              <button id="tool-select" class="active" data-tool-group="modeluj" title="Obrót i wybór">⌖ <span>Wybierz</span></button>
+              <button id="tool-draw" data-tool-group="modeluj" title="Narysuj pręt albo pełny obrys 3D">✎ <span>Rysuj 3D</span></button>
+              <button id="tool-add-primitive" data-tool-group="modeluj" title="Dodaj prymityw">＋ <span>Bryła</span></button>
+              <button id="tool-move" data-tool-group="modeluj" title="Przesuń aktywną bryłę w osiach XYZ">↔ <span>Przesuń</span></button>
+              <button id="tool-rotate" data-tool-group="modeluj" title="Obróć aktywną bryłę wokół osi XYZ">⟳ <span>Obróć</span></button>
+              <button id="tool-scale" data-tool-group="modeluj" title="Skaluj aktywną bryłę proporcjonalnie lub według osi">⤢ <span>Skaluj</span></button>
+              <button id="tool-face" data-tool-group="modeluj" title="Zaznacz ścianę albo linię między ściankami i nadaj bryle kształt">▱ <span>Ściana / krawędź</span></button>
+              <button id="tool-area" data-tool-group="wycinaj" title="Wytnij ekranowym obszarem fragment jednej lub wielu brył">▣ <span>Obszar</span></button>
+              <button id="tool-surface-add" data-tool-group="lacz" title="Wyciągnij nową bryłę bezpośrednio z powierzchni">⬡ <span>Na bryle</span></button>
+              <button id="tool-array" data-tool-group="lacz" title="Duplikuj albo utwórz szyk liniowy lub kołowy">⠿ <span>Szyk</span></button>
+              <button id="tool-copy" data-tool-group="lacz" title="Skopiuj wszystkie zaznaczone obiekty">⧉ <span>Kopiuj</span></button>
+              <button id="tool-mirror" data-tool-group="lacz" title="Odbij geometrię względem lokalnej osi">◩ <span>Lustro</span></button>
+              <button id="tool-measure" data-tool-group="detal" title="Zmierz odległość pomiędzy punktami powierzchni">⌁ <span>Pomiar</span></button>
+              <button id="tool-print" data-tool-group="detal" title="Przygotowanie do druku i widok">🖨 <span>Druk 3D</span></button>
+              <button id="tool-boolean" data-tool-group="wycinaj" title="Połącz dwie rewizje bryłowe">∪ <span>Boolean</span></button>
+              <button id="tool-sculpt" data-tool-group="rzezba" title="Rzeźb powierzchnię w milimetrach">◉ <span>Rzeźba</span></button>
+              <button id="tool-smooth" data-tool-group="rzezba" title="Zagęść i wygładź całą bryłę prawdziwymi ścianami">◌ <span>Wygładź</span></button>
+              <button id="tool-delete" class="danger" data-tool-group="always" title="Usuń zaznaczony obiekt">⌫ <span>Usuń</span></button>
+              <button id="tool-undo" data-tool-group="always" title="Cofnij ostatnią lokalną zmianę" disabled>↶ <span>Cofnij</span></button>
+              <button id="tool-redo" data-tool-group="always" title="Ponów ostatnią cofniętą zmianę" disabled>↷ <span>Ponów</span></button>
             </div>
             <div id="select-options" class="tool-options" hidden>
               <strong>Zaznaczanie obiektów</strong>
@@ -73,6 +74,9 @@
               <strong>Obszar przez bryłę</strong>
               <button id="area-cancel" type="button">Anuluj obszar</button>
               <small>Przeciągnij prostokąt palcem lub LPM. Jego granice przetną wszystkie widoczne, odblokowane bryły; wycięte fragmenty zostaną zaznaczone i otrzymają własne osie do przesuwania, obracania i skalowania.</small>
+              <strong>Co z zaznaczonym fragmentem?</strong>
+              <div class="compact-actions"><button id="area-pull" type="button">Odciągnij</button><button id="area-twist" type="button">Skręć</button><button id="area-bend" type="button">Wygnij</button><button id="area-keep-fragment" type="button">Zostaw tylko fragment</button><button id="area-drop-fragment" type="button">Odetnij (usuń fragment)</button></div>
+              <small id="area-action-status">Odciągnij rozciąga całość w miejscu cięcia (przeciągnij strzałkę), Skręć obraca, Wygnij prowadzi do zaginania, Odetnij usuwa fragment a bryła zostaje zamknięta.</small>
             </div>
             <div id="draw-options" class="tool-options" hidden>
               <label>Tryb
@@ -99,21 +103,34 @@
             <div id="primitive-options" class="tool-options" hidden>
               <strong>Interaktywna bryła</strong>
               <label>Bryła
-                <select id="primitive-shape"><option value="box">Blok</option><option value="triangle_prism">Trójkąt — graniastosłup</option><option value="hex_prism">Heksagon — graniastosłup</option><option value="sphere">Kula</option><option value="cylinder">Cylinder</option><option value="ellipsoid">Elipsoida</option><option value="cone">Stożek</option></select>
+                <select id="primitive-shape"><option value="box">Blok</option><option value="triangle_prism">Trójkąt — graniastosłup</option><option value="hex_prism">Heksagon — graniastosłup</option><option value="sphere">Kula</option><option value="cylinder">Cylinder</option><option value="ellipsoid">Elipsoida</option><option value="cone">Stożek</option><option value="bolt">Śruba</option><option value="nut">Nakrętka</option><option value="washer">Podkładka</option><option value="gear">Koło zębate</option><option value="pin">Trzpień / pin</option><option value="thread_rod">Pręt gwintowany</option></select>
               </label>
               <label>Rozmiar startowy <input id="primitive-size" type="number" min="0.2" max="1000" step="0.1" value="40"><b>mm</b></label>
               <label>Głębokość <input id="primitive-depth" type="number" min="0.2" max="1000" step="0.1" value="20"><b>mm</b></label>
+              <label>Średnica <input id="part-diameter" type="number" min="0.2" max="1000" step="0.1" value="10"><b>mm</b></label>
+              <label>Długość <input id="part-length" type="number" min="0.2" max="1000" step="0.1" value="30"><b>mm</b></label>
+              <label>Zęby <input id="part-teeth" type="number" min="4" max="200" step="1" value="12"></label>
+              <label>Moduł <input id="part-module" type="number" min="0.1" max="50" step="0.1" value="2"><b>mm</b></label>
+              <label>Skok gwintu <input id="part-pitch" type="number" min="0.2" max="50" step="0.1" value="2"><b>mm</b></label>
+              <label>Otwór <input id="part-hole" type="number" min="0" max="1000" step="0.1" value="0"><b>mm</b></label>
+              <label>Luz <input id="part-clearance" type="number" min="0" max="10" step="0.05" value="0.2"><b>mm</b></label>
               <button id="primitive-create">Dodaj na środku</button>
+              <button id="primitive-rebuild" type="button">Przebuduj aktywny z parametrów</button>
               <small>Albo przeciągnij LPM bezpośrednio w widoku: ruch ustala szerokość i wysokość, a pole Głębokość — wymiar w głąb ekranu.</small>
+              <strong>Powiązania wymiarowe</strong>
+              <label>Link <select id="part-link"><option value="">Brak — niezależna część</option><option value="nut-to-bolt">Nakrętka → do aktywnej śruby</option><option value="hole-to-pin">Otwór/gniazdo → do aktywnego trzpienia</option><option value="gear-pair">Koło zębate → para do aktywnego koła</option></select></label>
+              <div class="compact-actions"><button id="part-link-break" type="button">Zerwij powiązanie</button></div>
+              <small id="part-link-status">Brak powiązań. Powiązane parametry kopiują wymiary z części bazowej plus luz; konflikt zgłosi ostrzeżenie zamiast cichej zmiany.</small>
             </div>
             <div id="sculpt-options" class="tool-options" hidden>
               <label>Narzędzie
-                <select id="sculpt-mode"><option value="inflate">Wypchnij</option><option value="clay">Clay / glina</option><option value="deflate">Dłuto / wgnieć</option><option value="smooth">Wygładź</option><option value="flatten">Spłaszcz</option><option value="scrape">Scrape / zetnij</option><option value="crease">Bruzda</option><option value="pinch">Pinch / ściśnij</option><option value="grab">Rozciągnij</option><option value="snake">Snake Hook</option><option value="thicken">Pogrub</option><option value="mask">Maskuj / chroń</option><option value="unmask">Wymaż maskę</option></select>
+                <select id="sculpt-mode"><option value="inflate">Wypchnij</option><option value="clay">Clay / glina</option><option value="deflate">Dłuto / wgnieć</option><option value="smooth">Wygładź</option><option value="flatten">Spłaszcz</option><option value="scrape">Scrape / zetnij</option><option value="crease">Bruzda</option><option value="pinch">Pinch / ściśnij</option><option value="grab">Rozciągnij</option><option value="snake">Snake Hook</option><option value="thicken">Pogrub</option><option value="scales">Stempel: łuski</option><option value="grooves">Stempel: rowki</option><option value="studs">Stempel: ćwieki</option><option value="mask">Maskuj / chroń</option><option value="unmask">Wymaż maskę</option></select>
               </label>
-              <label>Promień <input id="sculpt-radius" type="number" min="0.1" max="1000" step="0.1" value="8"><b>mm</b></label>
-              <label>Ruch <input id="sculpt-depth" type="number" min="0.01" max="100" step="0.1" value="2"><b>mm</b></label>
-              <label>Siła <input id="sculpt-strength" type="number" min="-1" max="1" step="0.05" value="0.45"></label>
+              <label>Promień <input id="sculpt-radius" type="number" min="0.1" max="1000" step="0.1" value="8"><b>mm</b><input id="sculpt-radius-slider" type="range" min="0.5" max="60" step="0.5" value="8" aria-label="Promień pędzla suwak"></label>
+              <label>Ruch <input id="sculpt-depth" type="number" min="0.01" max="100" step="0.1" value="2"><b>mm</b><input id="sculpt-depth-slider" type="range" min="0.1" max="20" step="0.1" value="2" aria-label="Głębokość ruchu suwak"></label>
+              <label>Siła <input id="sculpt-strength" type="number" min="-1" max="1" step="0.05" value="0.45"><input id="sculpt-strength-slider" type="range" min="-1" max="1" step="0.05" value="0.45" aria-label="Siła pędzla suwak"></label>
               <label>Gęstość <select id="sculpt-density"><option value="2">Baza · 2,0 mm</option><option value="0.8" selected>Detal · 0,8 mm</option><option value="0.35">Mikro · 0,35 mm</option></select></label>
+              <details class="tool-advanced"><summary>Topologia, symetria i warstwy</summary><div class="tool-advanced-grid">
               <label>Odstęp próbek <input id="sculpt-spacing" type="number" min="3" max="50" step="1" value="12"><b>%</b></label>
               <fieldset class="symmetry-fields"><legend>Symetria lokalna</legend><label><input id="sculpt-sym-x" type="checkbox">X</label><label><input id="sculpt-sym-y" type="checkbox">Y</label><label><input id="sculpt-sym-z" type="checkbox">Z</label></fieldset>
               <label><input id="sculpt-adaptive" type="checkbox"> Adaptacyjna topologia przy pędzlu</label>
@@ -121,12 +138,26 @@
               <button id="sculpt-clear-mask" type="button">Wyczyść maskę</button>
               <small id="sculpt-mask-count">Maska: 0 punktów</small>
               <fieldset class="sculpt-layer-fields"><legend>Warstwy rzeźby</legend><select id="sculpt-layer-select" aria-label="Aktywna warstwa rzeźby"></select><button id="sculpt-layer-new" type="button">＋ Warstwa</button><button id="sculpt-layer-toggle" type="button">Wyłącz</button><button id="sculpt-layer-delete" type="button">Usuń</button><label>Siła <input id="sculpt-layer-opacity" type="number" min="0" max="1" step="0.05" value="1"></label><button id="sculpt-layer-rebuild" type="button">Przelicz</button></fieldset>
+              </div></details>
               <small>LPM lub 1 palec po powierzchni · symetria działa względem lokalnych osi bryły · każda kreska jest jedną operacją historii</small>
+              <details class="tool-advanced"><summary>Grawer i relief</summary><div class="tool-advanced-grid">
+              <strong>Grawer wzdłuż powierzchni</strong>
+              <label>Tryb <select id="engrave-kind"><option value="path">Ścieżka palcem / myszą</option><option value="text">Napis (font 5×7)</option></select></label>
+              <label><input id="engrave-draw-mode" type="checkbox"> Rysuj ścieżkę w narzędziu Rzeźba (LPM nie rzeźbi)</label>
+              <label>Napis <input id="engrave-text" type="text" value="SKANER" maxlength="24"></label>
+              <label>Wysokość liter <input id="engrave-size" type="number" min="0.5" max="500" step="0.5" value="6"><b>mm</b></label>
+              <label>Szerokość <input id="engrave-width" type="number" min="0.05" max="50" step="0.1" value="1.5"><b>mm</b></label>
+              <label>Głębokość <input id="engrave-depth" type="number" min="0.01" max="100" step="0.1" value="0.6"><b>mm</b><input id="engrave-depth-slider" type="range" min="0.1" max="5" step="0.1" value="0.6" aria-label="Głębokość graweru suwak"></label>
+              <label>Kierunek <select id="engrave-mode"><option value="engrave">Wgłąb (grawer)</option><option value="relief">Relief (wypukły)</option></select></label>
+              <label>Profil <select id="engrave-profile"><option value="v">V — ostre dno</option><option value="u">U — zaokrąglone</option><option value="flat">Płaskie dno</option></select></label>
+              <div class="compact-actions"><button id="engrave-preview" type="button">Podgląd</button><button id="engrave-commit" type="button" disabled>Graweruj</button><button id="engrave-cancel" type="button" disabled>Anuluj</button><button id="engrave-clear-path" type="button">Wyczyść ścieżkę</button></div>
+              <small id="engrave-status">Ścieżka: 0 punktów. Narysuj kreskę na bryle albo kliknij punkt startu napisu — podgląd pokaże głębokość, szerokość i kierunek przed zatwierdzeniem.</small>
+              </div></details>
             </div>
             <div id="smooth-options" class="tool-options" hidden>
               <strong>Wygładź całą bryłę</strong>
               <label>Poziom podziału <select id="smooth-level"><option value="1" selected>1 · 4× więcej ścian</option><option value="2">2 · 16× więcej ścian</option><option value="3">3 · 64× więcej ścian (High)</option></select></label>
-              <label>Siła <input id="smooth-strength" type="number" min="0" max="1" step="0.05" value="0.65"></label>
+              <label>Siła <input id="smooth-strength" type="number" min="0" max="1" step="0.05" value="0.65"><input id="smooth-strength-slider" type="range" min="0" max="1" step="0.05" value="0.65" aria-label="Siła wygładzania suwak"></label>
               <label>Przejścia jakości <input id="smooth-passes" type="number" min="1" max="12" step="1" value="6"></label>
               <label><input id="smooth-preserve-sharp" type="checkbox"> Chroń ostre krawędzie</label>
               <label>Kąt ochrony <input id="smooth-sharp-angle" type="number" min="1" max="179" step="1" value="50"><b>°</b></label>
@@ -139,14 +170,28 @@
               <strong>Edycja powierzchni</strong>
               <div class="surface-kind" aria-label="Wybierz ścianę, krawędź albo wierzchołek"><button type="button" data-surface-kind="face" aria-pressed="true">▰ ŚCIANA</button><button type="button" data-surface-kind="edge" aria-pressed="false">╱ KRAWĘDŹ</button><button type="button" data-surface-kind="vertex" aria-pressed="false">◆ WIERZCHOŁEK</button></div>
               <label>Wybór <select id="surface-selection-mode"><option value="face">Cała płaszczyzna</option><option value="triangle">Pojedynczy trójkąt</option><option value="edge">Krawędź trójkąta</option><option value="vertex">Wierzchołek siatki</option></select></label>
-              <label>Wypchnij <input id="face-offset" aria-label="Wypchnięcie ściany w mm" type="number" min="-100000" max="100000" step="0.1" value="5"><b>mm</b></label>
+              <label><input id="edge-marquee-mode" type="checkbox"> Zaznaczanie prostokątem (przeciągnij)</label>
+              <div class="surface-kind" aria-label="Filtr orientacji krawędzi"><button type="button" data-edge-filter="all" aria-pressed="true">WSZYSTKIE</button><button type="button" data-edge-filter="vertical" aria-pressed="false">↕ PIONOWE</button><button type="button" data-edge-filter="horizontal" aria-pressed="false">↔ POZIOME</button></div>
+              <small id="edge-select-count">Krawędzie: kliknij lub przeciągnij prostokąt w trybie KRAWĘDŹ. Skala zwęża/rozszerza wszystkie naraz (np. pysk).</small>
+              <label>Wypchnij <input id="face-offset" aria-label="Wypchnięcie ściany w mm" type="number" min="-100000" max="100000" step="0.1" value="5"><b>mm</b><input id="face-offset-slider" type="range" min="-50" max="50" step="0.5" value="5" aria-label="Wypchnięcie ściany suwak"></label>
               <div class="surface-nudge" aria-label="Szybkie wsuwanie i wysuwanie"><button type="button" data-face-nudge="-5">Wsuń 5</button><button type="button" data-face-nudge="-1">−1</button><button type="button" data-face-nudge="1">+1</button><button type="button" data-face-nudge="5">Wysuń 5</button></div>
-              <label><span id="face-scale-label">Zwęż / rozszerz kontur</span> <input id="face-scale" aria-label="Zwężenie lub rozszerzenie powierzchni" type="number" min="0.02" max="20" step="0.01" value="1"></label>
+              <label><span id="face-scale-label">Zwęż / rozszerz kontur</span> <input id="face-scale" aria-label="Zwężenie lub rozszerzenie powierzchni" type="number" min="0.02" max="20" step="0.01" value="1"><input id="face-scale-slider" type="range" min="0.02" max="3" step="0.01" value="1" aria-label="Skala konturu suwak"></label>
               <div class="surface-taper" aria-label="Szybkie zwężanie krawędzi i ścian"><button type="button" data-face-scale="0.02">Ostrze 2%</button><button type="button" data-face-scale="0.5">Zwęź 50%</button><button type="button" data-face-scale="1">100%</button><button type="button" data-face-scale="1.5">Rozszerz 150%</button></div>
               <label>Zakres ściany <input id="face-angle" aria-label="Kąt łączenia powierzchni" type="number" min="0.1" max="89" step="0.5" value="8"><b>°</b></label>
               <button id="face-apply">Zatwierdź powierzchnię</button>
               <button id="face-clear">Wyczyść wybór</button>
               <small>Wybierz ŚCIANĘ, KRAWĘDŹ albo WIERZCHOŁEK i dotknij powierzchni blisko elementu. Wierzchołek można wysunąć niebieską strzałką, tworząc precyzyjny ostry czubek. Podgląd jest natychmiastowy, a zatwierdzenie zachowuje zamkniętą siatkę.</small>
+              <strong>Fazowanie krawędzi (bevel)</strong>
+              <label>Szerokość <input id="bevel-width" type="number" min="0.05" max="50" step="0.1" value="2"><b>mm</b><input id="bevel-width-slider" type="range" min="0.1" max="15" step="0.1" value="2" aria-label="Szerokość fazowania suwak"></label>
+              <label>Segmenty <select id="bevel-segments"><option value="1">1 — ostra faza</option><option value="2" selected>2 — łagodna</option><option value="3">3 — gładka</option><option value="4">4 — bardzo gładka</option></select></label>
+              <label>Profil <select id="bevel-profile"><option value="round">Okrągły</option><option value="linear">Prosty (faza)</option><option value="concave">Wklęsły</option></select></label>
+              <div class="compact-actions"><button id="bevel-preview" type="button">Podgląd</button><button id="bevel-commit" type="button" disabled>Zatwierdź fazę</button><button id="bevel-cancel" type="button" disabled>Anuluj</button></div>
+              <small id="bevel-status">Wybierz krawędź powyżej, ustaw szerokość i profil — podgląd pokaże realnie zastosowaną wartość; zbyt szeroka faza zostanie automatycznie ograniczona z komunikatem.</small>
+              <strong>Zaginanie powierzchni</strong>
+              <label>Profil <select id="bend-profile"><option value="circle">Koło — łagodny łuk</option><option value="triangle">Trójkąt — ostry szczyt</option><option value="hex">Heksagon — plateau</option><option value="flat">Płaskie uniesienie</option></select></label>
+              <label>Głębokość <input id="bend-amount" type="number" min="-1000" max="1000" step="0.5" value="8"><b>mm</b><input id="bend-amount-slider" type="range" min="-40" max="40" step="0.5" value="8" aria-label="Głębokość zagięcia suwak"></label>
+              <div class="compact-actions"><button id="bend-preview" type="button">Podgląd</button><button id="bend-commit" type="button" disabled>Zatwierdź zagięcie</button><button id="bend-cancel" type="button" disabled>Anuluj</button></div>
+              <small>Kliknij płaską powierzchnię, wybierz profil i głębokość — siatka zagęszcza się tylko w wybranym obszarze, reszta bryły bez zmian.</small>
             </div>
             <div id="surface-add-options" class="tool-options" hidden>
               <strong>Rysuj obiekt na powierzchni</strong>
@@ -161,6 +206,7 @@
               <label><input id="surface-add-cutter" type="checkbox"> Twórz jako wycinak MINUS</label>
               <div class="compact-actions"><button id="surface-add-create-many" type="button">Utwórz na punktach</button><button id="surface-add-clear-points" type="button">Wyczyść punkty</button></div>
               <small id="surface-add-count">Punkty: 0</small>
+              <ol id="surface-seed-list" class="seed-list" aria-label="Lista punktów na bryle"></ol>
               <small>Kliknij powierzchnię. Kopie i rozrzut tworzą deterministyczne kępki włosów lub kolców zgodnie z normalną każdej ściany; pozostają osobnymi obiektami bez ciężkiego booleana.</small>
             </div>
             <div id="array-options" class="tool-options" hidden>
@@ -188,6 +234,31 @@
               <button id="measure-clear" type="button">Wyczyść pomiar</button>
               <strong id="measure-result">Kliknij dwa punkty</strong>
               <small>Wynik podaje długość 3D oraz różnice X/Y/Z. Przyciąganie działa także na przesuwanie, obrót, skalę i szkice.</small>
+              <label>Tryb <select id="measure-mode"><option value="distance">Odległość (2 pkt)</option><option value="angle">Kąt (3 pkt)</option><option value="radius">Promień (3 pkt)</option></select></label>
+            </div>
+            <div id="print-options" class="tool-options" hidden>
+              <strong>Przygotowanie do druku 3D</strong>
+              <label>Uprość siatkę <input id="decimate-ratio" type="number" min="0" max="0.95" step="0.05" value="0.5"><input id="decimate-ratio-slider" type="range" min="0" max="0.9" step="0.05" value="0.5" aria-label="Stopień uproszczenia suwak"></label>
+              <button id="decimate-apply" type="button">Uprość aktywną</button>
+              <label>Ścianka <input id="hollow-wall" type="number" min="0.2" max="50" step="0.2" value="2"><b>mm</b></label>
+              <button id="hollow-apply" type="button">Wydrąż aktywną</button>
+              <div class="compact-actions"><button id="print-drop" type="button">Połóż na stole</button><button id="print-orient" type="button">Auto-orientacja</button></div>
+              <label>Materiał <select id="print-material"><option value="pla">PLA · 1,24 g/cm³</option><option value="petg">PETG · 1,27 g/cm³</option><option value="abs">ABS · 1,04 g/cm³</option><option value="tpu">TPU · 1,21 g/cm³</option></select></label>
+              <label>Cena <input id="print-price" type="number" min="0" max="1000" step="1" value="90"><b>zł/kg</b></label>
+              <small id="print-weight">Waga i koszt pojawią się po wybraniu bryły.</small>
+              <strong>Widok</strong>
+              <label><input id="clip-enabled" type="checkbox"> Przekrój</label>
+              <label>Oś <select id="clip-axis"><option value="x">X</option><option value="y">Y</option><option value="z" selected>Z</option></select></label>
+              <label>Pozycja <input id="clip-offset" type="number" step="1" value="0"><b>mm</b><input id="clip-offset-slider" type="range" min="-150" max="150" step="1" value="0" aria-label="Pozycja przekroju suwak"></label>
+              <div class="compact-actions"><button id="clip-flip" type="button">Odwróć</button><button id="shot-png" type="button">Zdjęcie PNG</button><button id="isolate-toggle" type="button" aria-pressed="false">Izoluj</button></div>
+              <label>Rozstrzał <input id="explode-factor" type="range" min="0" max="200" step="1" value="0" aria-label="Rozstrzał złożenia suwak"></label>
+              <label>Zakładka <select id="bookmark-slot"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label>
+              <div class="compact-actions"><button id="bookmark-save" type="button">Zapisz widok</button><button id="bookmark-go" type="button">Idź do widoku</button></div>
+              <strong>Wyrównaj zaznaczenie do aktywnego</strong>
+              <label>Oś <select id="align-axis"><option value="x">X</option><option value="y">Y</option><option value="z">Z</option></select></label>
+              <label>Punkt <select id="align-mode"><option value="min">Min</option><option value="center" selected>Środek</option><option value="max">Max</option></select></label>
+              <button id="align-apply" type="button">Wyrównaj</button>
+              <small>Historia, eksport zaznaczenia i skróty są w panelu Scena po prawej.</small>
             </div>
             <div id="transform-options" class="tool-options" hidden>
               <strong id="transform-title">Przesuwanie</strong>
@@ -205,16 +276,29 @@
                 <select id="boolean-mode"><option value="union">Suma</option><option value="difference">Różnica</option><option value="intersection">Przecięcie</option></select>
               </label>
               <button id="boolean-apply">Wykonaj boolean</button>
+              <button id="boolean-preview" type="button">Podgląd odjęcia</button>
               <strong>Narysuj lub wstaw wycinak</strong>
-              <label>Kształt <select id="cutter-shape"><option value="box">Blok</option><option value="cylinder">Koło / walec</option><option value="hex_prism">Heksagon</option><option value="triangle_prism">Trójkąt</option><option value="sphere">Kula</option><option value="cone">Stożek</option></select></label>
-              <label>Szerokość <input id="cutter-size" type="number" min="0.1" max="1000" step="0.1" value="20"><b>mm</b></label>
-              <label>Głębokość <input id="cutter-depth" type="number" min="0.1" max="1000" step="0.1" value="20"><b>mm</b></label>
+              <label>Kształt <select id="cutter-shape"><option value="box">Blok</option><option value="cylinder">Koło / walec</option><option value="hex_prism">Heksagon</option><option value="triangle_prism">Trójkąt</option><option value="sphere">Kula</option><option value="cone">Stożek</option><option value="gear">Zębatka na kole</option><option value="thread_rod">Gwint</option><option value="pin">Rowek / trzpień</option></select></label>
+              <label>Szerokość <input id="cutter-size" type="number" min="0.1" max="1000" step="0.1" value="20"><b>mm</b><input id="cutter-size-slider" type="range" min="1" max="100" step="0.5" value="20" aria-label="Szerokość wycinaka suwak"></label>
+              <label>Głębokość <input id="cutter-depth" type="number" min="0.1" max="1000" step="0.1" value="20"><b>mm</b><input id="cutter-depth-slider" type="range" min="1" max="100" step="0.5" value="20" aria-label="Głębokość wycinaka suwak"></label>
               <button id="boolean-create-cutter" type="button">Wstaw ruchomy wycinak</button>
               <button id="boolean-draw-cutter" type="button">Narysuj własny wycinak 3D</button>
               <small>Wycinak pozostaje osobnym obiektem: przesuń, obróć i skaluj go, a dopiero potem kliknij Wykonaj boolean.</small>
+              <strong>Podział bryły (slicer)</strong>
+              <label>Oś cięcia <select id="split-axis"><option value="x">X — lewo/prawo</option><option value="y">Y — przód/tył</option><option value="z" selected>Z — góra/dół</option></select></label>
+              <label>Pozycja <input id="split-offset" type="number" step="0.5" value="0"><b>mm</b><input id="split-offset-slider" type="range" min="-100" max="100" step="0.5" value="0" aria-label="Pozycja płaszczyzny cięcia suwak"></label>
+              <div class="compact-actions"><button id="split-preview" type="button">Podgląd obu części</button><button id="split-commit" type="button" disabled>Podziel</button><button id="split-cancel" type="button" disabled>Anuluj</button></div>
+              <small id="split-status">Płaszczyzna tnie aktywną bryłę; podgląd pokazuje obie części, podział zostawia dwie szczelne bryły.</small>
+              <strong>Łączniki drukarskie</strong>
+              <label>Typ <select id="connector-type"><option value="pin">Pin + gniazdo</option><option value="dovetail">Zakładka (jaskółczy ogon)</option><option value="socket">Samo gniazdo (wycinak)</option></select></label>
+              <label>Średnica <input id="connector-size" type="number" min="0.5" max="100" step="0.1" value="6"><b>mm</b></label>
+              <label>Głębokość <input id="connector-depth" type="number" min="0.5" max="100" step="0.5" value="10"><b>mm</b></label>
+              <label>Luz <input id="connector-tolerance" type="number" min="0" max="5" step="0.05" value="0.2"><b>mm</b></label>
+              <div class="compact-actions"><button id="connector-add" type="button">Wstaw w klikniętym miejscu</button></div>
+              <small>Pin ląduje na aktywnej bryle, gniazdo jako wycinak MINUS na drugiej. Luz zależy od drukarki — fizycznego spasowania nie gwarantujemy bez testu tolerancji.</small>
             </div>
           </div>
-          <div id="viewport" aria-label="Podgląd modelu 3D"><div id="area-marquee" class="area-marquee" hidden></div></div>
+          <div id="viewport" aria-label="Podgląd modelu 3D"><div id="area-marquee" class="area-marquee" hidden></div><div id="edge-marquee" class="area-marquee" hidden></div></div>
           <div id="sketch-plane-hud" class="sketch-plane-hud" hidden><span>AKTYWNA PŁASZCZYZNA</span><strong id="sketch-plane-label">AUTO</strong><small id="sketch-plane-normal">N 0.00 / 0.00 / 1.00</small></div>
           <div class="axis-widget" aria-label="Sterowanie orientacją kamery"><button id="axis-view-x" class="x" title="Widok wzdłuż osi X">X</button><button id="axis-view-y" class="y" title="Widok wzdłuż osi Y">Y</button><button id="axis-view-z" class="z" title="Widok wzdłuż osi Z">Z</button><button id="axis-view-iso" class="iso" title="Widok izometryczny">◆</button></div>
           <div id="empty-state" class="empty-state"><div class="scan-orbit">◎</div><strong>Utwórz bryłę albo narysuj kształt 3D</strong><small>Komputer: LPM/PPM/kółko · iPhone: 1 palec narzędzie, 2 palce kamera</small></div>
@@ -230,6 +314,8 @@
                 <button id="export-glb-action" disabled><b>GLB</b><span>Materiały i hierarchia sceny</span><i>↓</i></button>
               </div>
               <div id="export-readiness" class="export-readiness">Najpierw wygeneruj albo wczytaj model.</div>
+              <label><input id="export-selected" type="checkbox"> Tylko zaznaczone obiekty</label>
+              <div class="compact-actions"><button id="shortcuts-help" type="button">Skróty klawiszowe (?)</button></div>
             </div>
           </section>
         </section>
@@ -243,6 +329,11 @@
           <section class="panel-section outliner-section">
             <div class="section-title"><span>SC</span><div><strong>Scena</strong><small>Obiekty projektu</small></div></div>
             <div id="scene-outliner" class="scene-outliner"><p>Scena jest pusta.</p></div>
+            <div class="outline-properties" id="history-panel">
+              <strong>Historia operacji</strong>
+              <ol id="history-list" class="seed-list" aria-label="Historia operacji"></ol>
+              <small>Klik cofa do kroku (reszta wraca przez Ponów).</small>
+            </div>
             <div id="outline-properties" class="outline-properties" hidden>
               <label>Grubość szkicu <input id="outline-height" type="number" min="0.03" max="1000" step="0.1"><b>mm</b></label>
               <div><button id="outline-preview">Podgląd</button><button id="outline-commit" disabled>Zatwierdź</button><button id="outline-cancel" disabled>Anuluj</button></div>
@@ -278,6 +369,8 @@
               <div><dt>Komponenty</dt><dd id="stat-components">—</dd></div>
               <div><dt>Otwarte krawędzie</dt><dd id="stat-boundary">—</dd></div>
               <div><dt>Objętość</dt><dd id="stat-volume">—</dd></div>
+              <div><dt>Czas operacji</dt><dd id="stat-optime">—</dd></div>
+              <div><dt>Pamięć</dt><dd id="stat-memory">—</dd></div>
             </dl>
           </section>
           <section class="panel-section">
@@ -293,7 +386,7 @@
         </aside>
       </main>
 
-      <footer class="statusbar"><span class="status-dot"></span><strong id="status">Gotowy</strong><span id="status-detail">Wszystkie dane pozostają lokalnie</span><b>MM</b><b id="fps">60 FPS</b></footer>
+      <footer class="statusbar"><span class="status-dot"></span><strong id="status">Gotowy</strong><span id="status-detail">Wszystkie dane pozostają lokalnie</span><b>MM</b><b id="build-id" title="Wersja pakietu">b44</b><b id="fps">60 FPS</b></footer>
     </div>
   </body>
 </html>
