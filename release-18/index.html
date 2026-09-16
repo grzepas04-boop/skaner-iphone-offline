@@ -11,8 +11,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-BeL23KJe.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-B_wIqdai.css">
+    <script type="module" crossorigin src="./assets/index-Bx7P__Ks.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-B5NOxmfX.css">
   </head>
   <body>
     <div id="app">
@@ -28,7 +28,7 @@
         </nav>
         <div class="top-actions">
           <span id="engine-state" class="engine-state">LOKALNY SILNIK GEOMETRII</span>
-          <button id="project-new">Nowy</button><button id="project-open">Otwórz</button><button id="project-save">Zapisz</button><button id="model-import">Importuj OBJ/STL</button><button id="load-sample">Odzyskaj</button><button id="theme-toggle" title="Przełącz jasny / ciemny">☀ Jasny</button><button id="panel-toggle" aria-expanded="false">Panele</button>
+          <button id="project-new">Nowy</button><button id="project-open">Otwórz</button><button id="project-save">Zapisz</button><button id="model-import">Importuj OBJ/STL</button><button id="load-sample">Odzyskaj</button><button id="theme-toggle" title="Przełącz jasny / ciemny">☀ Jasny</button><button id="shortcuts-top" title="Skróty klawiszowe i gesty">Skróty</button><button id="panel-toggle" aria-expanded="false">Panele</button>
           <input id="project-file" type="file" accept="application/json,.skaner3d" hidden>
           <input id="model-file" type="file" accept=".obj,.stl,model/obj,model/stl" hidden>
         </div>
@@ -36,9 +36,9 @@
 
       <main class="layout">
         <section class="viewport-shell">
-          <div class="viewport-toolbar">
-            <div class="tool-group camera-views"><button id="view-main" class="active">GŁÓWNY</button><button id="view-iso">ISO</button><button id="view-front">PRZÓD</button><button id="view-right">BOK</button><button id="view-top">GÓRA</button><button id="view-bottom">DÓŁ</button></div>
-            <div class="tool-group"><button id="shade-solid" class="active">STUDIO</button><button id="shade-matcap">RZEŹBA</button><button id="shade-xray">X-RAY</button><button id="shade-wire">SIATKA</button><button id="toggle-grid">GRID</button><button id="quality-toggle" title="Jakość renderu: auto / wysoka / niska">JAKOŚĆ AUTO</button></div>
+          <div class="viewport-toolbar" aria-label="Widok i wygląd sceny">
+            <div class="tool-group camera-views" aria-label="Widok"><span class="toolbar-label">WIDOK</span><button id="view-main" class="active">GŁÓWNY</button><button id="view-iso">ISO</button><button id="view-front">PRZÓD</button><button id="view-right">BOK</button><button id="view-top">GÓRA</button></div>
+            <div class="tool-group display-views" aria-label="Wygląd"><span class="toolbar-label">WYGLĄD</span><button id="shade-solid" class="active">STUDIO</button><button id="shade-matcap">RZEŹBA</button><button id="shade-xray">X-RAY</button><button id="shade-wire">SIATKA</button><button id="toggle-grid">SIATKA XY</button><button id="quality-toggle" title="Jakość renderu: auto / wysoka / niska">JAKOŚĆ AUTO</button></div>
           </div>
           <div class="modeling-toolbar" aria-label="Narzędzia modelowania">
             <div class="modeling-tools">
@@ -301,8 +301,10 @@
             </div>
           </div>
           <div id="viewport" aria-label="Podgląd modelu 3D"><div id="area-marquee" class="area-marquee" hidden></div><div id="edge-marquee" class="area-marquee" hidden></div></div>
+          <div class="mobile-critical-actions" aria-label="Szybkie akcje projektu"><button id="mobile-save-float" type="button" title="Zapisz projekt">Zapisz</button><button id="mobile-export-float" type="button" title="Eksportuj model">Eksport</button></div>
           <div id="sketch-plane-hud" class="sketch-plane-hud" hidden><span>AKTYWNA PŁASZCZYZNA</span><strong id="sketch-plane-label">AUTO</strong><small id="sketch-plane-normal">N 0.00 / 0.00 / 1.00</small></div>
           <div class="axis-widget" aria-label="Sterowanie orientacją kamery"><button id="axis-view-x" class="x" title="Widok wzdłuż osi X">X</button><button id="axis-view-y" class="y" title="Widok wzdłuż osi Y">Y</button><button id="axis-view-z" class="z" title="Widok wzdłuż osi Z">Z</button><button id="axis-view-iso" class="iso" title="Widok izometryczny">◆</button></div>
+          <div id="view-cube" class="view-cube" aria-label="Sześcian orientacji"><span class="view-cube-caption">ORIENTACJA</span><button id="cube-top" data-view="top" title="Widok z góry">GÓRA</button><button id="cube-front" data-view="front" title="Widok z przodu">PRZÓD</button><button id="cube-right" data-view="right" title="Widok z prawej">BOK</button><button id="cube-left" data-view="left" title="Widok z lewej">LEWA</button><button id="cube-back" data-view="back" title="Widok z tyłu">TYŁ</button><button id="cube-bottom" data-view="bottom" title="Widok z dołu">DÓŁ</button></div>
           <div id="empty-state" class="empty-state"><div class="scan-orbit">◎</div><strong>Utwórz bryłę albo narysuj kształt 3D</strong><small>Komputer: LPM/PPM/kółko · iPhone: 1 palec narzędzie, 2 palce kamera</small></div>
           <div id="progress" class="progress" hidden><div class="spinner"></div><strong>Rekonstrukcja siatki…</strong><small>Analiza masek, pole SDF i kontrola zamknięcia</small></div>
           <section id="export-workspace" class="export-workspace" hidden>
@@ -323,7 +325,7 @@
         </section>
 
         <aside id="right-panel" class="right-panel panel">
-          <button id="panel-close" class="panel-close" type="button" aria-label="Zamknij panel">×</button>
+          <button id="panel-close" class="panel-close" type="button" aria-label="Zamknij panel">×</button><button id="panel-sheet-toggle" class="panel-sheet-toggle" type="button" aria-label="Rozwiń panel właściwości">Rozwiń właściwości</button>
           <section class="panel-section mobile-project-actions" aria-label="Projekt">
             <div class="section-title"><span>PR</span><div><strong>Projekt</strong><small>Pliki lokalne i odzyskiwanie</small></div></div>
             <div><button id="mobile-project-new" type="button">Nowy</button><button id="mobile-project-open" type="button">Otwórz</button><button id="mobile-project-save" type="button">Zapisz</button><button id="mobile-model-import" type="button">Importuj OBJ/STL</button><button id="mobile-load-sample" type="button">Odzyskaj</button></div>
