@@ -1,4 +1,4 @@
-const CACHE="skaner-studio-offline-release-75-edge-local-falloff";
+const CACHE="skaner-studio-offline-release-76-edge-safe-legacy";
 const SHELL=["./?offline=1","./manifest.webmanifest","./assets/skaner-icon.png"];
 self.addEventListener("install",event=>event.waitUntil((async()=>{
   const cache=await caches.open(CACHE),response=await fetch("./"),html=await response.text();
