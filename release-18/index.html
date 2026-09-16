@@ -11,7 +11,7 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-vOQI37UF.js"></script>
+    <script type="module" crossorigin src="./assets/index-MDAldHhz.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-DhP9tgVS.css">
   </head>
   <body>
@@ -83,7 +83,7 @@
                 <select id="draw-mode"><option value="rod">Pręt — gotowy po puszczeniu</option><option value="outline">Pełna bryła — zamknij obrys</option></select>
               </label>
               <label>Płaszczyzna
-                <select id="draw-plane-mode"><option value="auto">Auto — najbliższa płaszczyzna kamery</option><option value="view">Równolegle do ekranu</option><option value="surface">Stycznie do klikniętej ściany</option><option value="xy">Świat XY</option><option value="xz">Świat XZ</option><option value="yz">Świat YZ</option></select>
+                <select id="draw-plane-mode"><option value="auto">Auto — najbliższa płaszczyzna kamery</option><option value="multi">Wieloosiowo — każda kreska to ściana</option><option value="view">Równolegle do ekranu</option><option value="surface">Stycznie do klikniętej ściany</option><option value="xy">Świat XY</option><option value="xz">Świat XZ</option><option value="yz">Świat YZ</option></select>
               </label>
               <label>Odsunięcie <input id="draw-plane-offset" type="number" min="0" max="1000" step="0.05" value="0.15"><b>mm</b></label>
               <label>Profil
@@ -98,7 +98,7 @@
               <label><input id="draw-continue" type="checkbox"> Kontynuuj po puszczeniu (rysowanie wieloosiowe)</label>
               <button id="draw-finish">Zakończ kreskę</button>
               <button id="draw-cancel">Anuluj</button>
-              <small>Auto wybiera XY, XZ albo YZ według kierunku kamery i kotwiczy szkic na widocznej stronie modelu. Płaszczyznę pokazuje dyskretny opis bez dodatkowej kratki.</small>
+              <small>Auto wybiera XY, XZ albo YZ według kierunku kamery. Tryb Wieloosiowo zachowuje każdą zamkniętą kreskę jako osobny widok (np. bok + góra) i łączy je w jedną bryłę.</small>
             </div>
             <div id="primitive-options" class="tool-options" hidden>
               <strong>Interaktywna bryła</strong>
