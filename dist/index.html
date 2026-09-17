@@ -11,7 +11,7 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-ByzbMuGx.js"></script>
+    <script type="module" crossorigin src="./assets/index-DXtcJtZm.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-KTr67SAc.css">
   </head>
   <body>
@@ -242,6 +242,8 @@
               <strong>Przygotowanie do druku 3D</strong>
               <label>Uprość siatkę <input id="decimate-ratio" type="number" min="0" max="0.95" step="0.05" value="0.5"><input id="decimate-ratio-slider" type="range" min="0" max="0.9" step="0.05" value="0.5" aria-label="Stopień uproszczenia suwak"></label>
               <button id="decimate-apply" type="button">Uprość aktywną</button>
+              <button id="retopo-apply" type="button">Retopologia quad-dominant</button>
+              <small>Tworzy edytowalną topologię quad-dominant na żądanie; render i eksport pozostają szczelne.</small>
               <label>Ścianka <input id="hollow-wall" type="number" min="0.2" max="50" step="0.2" value="2"><b>mm</b></label>
               <button id="hollow-apply" type="button">Wydrąż aktywną</button>
               <div class="compact-actions"><button id="print-drop" type="button">Połóż na stole</button><button id="print-orient" type="button">Auto-orientacja</button></div>
