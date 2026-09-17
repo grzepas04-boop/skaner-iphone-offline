@@ -2,8 +2,13 @@
 
 Aktualne wydanie: **38** — bezpośrednie chwytanie i wysuwanie wierzchołków, stabilne ciasne łuki prętów przez sumę gładkich kapsuł, dokładny obrys pełnej bryły 1:1 oraz naprawione ekranowe cięcie narzędziem Obszar.
 
-Aktualne wydanie: **release 18**. Bezpośredni adres aplikacji:
-`https://grzepas04-boop.github.io/skaner-iphone-offline/release-18/?offline=1`
+Aktualne wydanie: **release 27**. Bezpośredni adres aplikacji:
+`https://grzepas04-boop.github.io/skaner-iphone-offline/?offline=1&v=93`
+
+Wydanie 27 dodaje natywny solver QuadriFlow skompilowany do WebAssembly dla
+retopologii offline. Widok edycji nie rysuje już technicznych przekątnych
+triangulacji jako wachlarza krawędzi; triangulacja pozostaje wyłącznie formatem
+wewnętrznym i eksportowym.
 
 Wydanie 18 dodaje profesjonalny układ mobilny bez poziomego paska strony,
 panel projektu, automatyczne przygotowanie siatki przy pierwszym ruchu dłuta,
