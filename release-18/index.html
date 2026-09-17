@@ -11,10 +11,11 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-MDAldHhz.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DhP9tgVS.css">
+    <script type="module" crossorigin src="./assets/index-EDU1X_I1.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-KTr67SAc.css">
   </head>
   <body>
+    <script type="module" src="./mobile-acceptance.js" defer></script>
     <div id="app">
       <header class="topbar">
         <div class="brand"><span class="brand-mark"><img src="./assets/skaner-icon.png" alt=""></span><strong>Skaner Studio</strong><small>precyzyjne modelowanie 3D</small></div>
@@ -135,6 +136,8 @@
               <fieldset class="symmetry-fields"><legend>Symetria lokalna</legend><label><input id="sculpt-sym-x" type="checkbox">X</label><label><input id="sculpt-sym-y" type="checkbox">Y</label><label><input id="sculpt-sym-z" type="checkbox">Z</label></fieldset>
               <label><input id="sculpt-adaptive" type="checkbox" checked> Adaptacyjna topologia przy pędzlu</label>
               <button id="sculpt-prepare">Przygotuj wybraną gęstość</button>
+              <label>Poziom multiresolution <select id="sculpt-multires-level"><option value="-2">Niski · duże ruchy</option><option value="-1">Średni niski</option><option value="0" selected>Bazowy</option><option value="1">Wysoki · detal</option><option value="2">Bardzo wysoki</option></select></label>
+              <button id="sculpt-multires-apply" type="button">Przełącz poziom siatki</button>
               <button id="sculpt-clear-mask" type="button">Wyczyść maskę</button>
               <small id="sculpt-mask-count">Maska: 0 punktów</small>
               <fieldset class="sculpt-layer-fields"><legend>Warstwy rzeźby</legend><select id="sculpt-layer-select" aria-label="Aktywna warstwa rzeźby"></select><button id="sculpt-layer-new" type="button">＋ Warstwa</button><button id="sculpt-layer-toggle" type="button">Wyłącz</button><button id="sculpt-layer-delete" type="button">Usuń</button><label>Siła <input id="sculpt-layer-opacity" type="number" min="0" max="1" step="0.05" value="1"></label><button id="sculpt-layer-rebuild" type="button">Przelicz</button></fieldset>
@@ -178,6 +181,7 @@
               <label><span id="face-scale-label">Zwęż / rozszerz kontur</span> <input id="face-scale" aria-label="Zwężenie lub rozszerzenie powierzchni" type="number" min="0.02" max="20" step="0.01" value="1"><input id="face-scale-slider" type="range" min="0.02" max="3" step="0.01" value="1" aria-label="Skala konturu suwak"></label>
               <div class="surface-taper" aria-label="Szybkie zwężanie krawędzi i ścian"><button type="button" data-face-scale="0.02">Ostrze 2%</button><button type="button" data-face-scale="0.5">Zwęź 50%</button><button type="button" data-face-scale="1">100%</button><button type="button" data-face-scale="1.5">Rozszerz 150%</button></div>
               <label>Zakres ściany <input id="face-angle" aria-label="Kąt łączenia powierzchni" type="number" min="0.1" max="89" step="0.5" value="8"><b>°</b></label>
+              <button id="face-groups" type="button">Pokaż grupy ścian</button>
               <button id="face-apply">Zatwierdź powierzchnię</button>
               <button id="face-clear">Wyczyść wybór</button>
               <small>Wybierz ŚCIANĘ, KRAWĘDŹ albo WIERZCHOŁEK i dotknij powierzchni blisko elementu. Wierzchołek można wysunąć niebieską strzałką, tworząc precyzyjny ostry czubek. Podgląd jest natychmiastowy, a zatwierdzenie zachowuje zamkniętą siatkę.</small>
@@ -240,6 +244,8 @@
               <strong>Przygotowanie do druku 3D</strong>
               <label>Uprość siatkę <input id="decimate-ratio" type="number" min="0" max="0.95" step="0.05" value="0.5"><input id="decimate-ratio-slider" type="range" min="0" max="0.9" step="0.05" value="0.5" aria-label="Stopień uproszczenia suwak"></label>
               <button id="decimate-apply" type="button">Uprość aktywną</button>
+              <button id="retopo-apply" type="button">Retopologia quad-dominant</button>
+              <small>Tworzy edytowalną topologię quad-dominant na żądanie; render i eksport pozostają szczelne.</small>
               <label>Ścianka <input id="hollow-wall" type="number" min="0.2" max="50" step="0.2" value="2"><b>mm</b></label>
               <button id="hollow-apply" type="button">Wydrąż aktywną</button>
               <div class="compact-actions"><button id="print-drop" type="button">Połóż na stole</button><button id="print-orient" type="button">Auto-orientacja</button></div>
