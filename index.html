@@ -11,8 +11,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-BO6vcEpJ.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BYqJgLjw.css">
+    <script type="module" crossorigin src="./assets/index-eIdW-jWX.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CH_VOTu4.css">
   </head>
   <body>
     <script type="module" src="./mobile-acceptance.js" defer></script>
@@ -39,7 +39,7 @@
         <section class="viewport-shell">
           <div class="viewport-toolbar" aria-label="Widok i wygląd sceny">
             <div class="tool-group camera-views" aria-label="Widok"><span class="toolbar-label">WIDOK</span><button id="view-main" class="active">GŁÓWNY</button><button id="view-iso">ISO</button><button id="view-front">PRZÓD</button><button id="view-right">BOK</button><button id="view-top">GÓRA</button></div>
-            <div class="tool-group display-views" aria-label="Wygląd"><span class="toolbar-label">WYGLĄD</span><button id="shade-solid" class="active">STUDIO</button><button id="shade-matcap">RZEŹBA</button><button id="shade-xray">X-RAY</button><button id="shade-wire">SIATKA</button><button id="toggle-grid">SIATKA XY</button><button id="quality-toggle" title="Jakość renderu: auto / wysoka / niska">JAKOŚĆ AUTO</button></div>
+            <div class="tool-group display-views" aria-label="Wygląd"><span class="toolbar-label">WYGLĄD</span><button id="shade-solid" class="active">STUDIO</button><button id="shade-matcap">RZEŹBA</button><button id="shade-xray">X-RAY</button><button id="shade-wire">SIATKA</button><button id="toggle-grid">SIATKA XY</button><label><input id="show-dimensions" type="checkbox" checked> Wymiary</label><button id="quality-toggle" title="Jakość renderu: auto / wysoka / niska">JAKOŚĆ AUTO</button></div>
           </div>
           <div class="modeling-toolbar" aria-label="Narzędzia modelowania">
             <div class="modeling-tools">
@@ -99,15 +99,22 @@
               <label><input id="draw-continue" type="checkbox"> Kontynuuj po puszczeniu (rysowanie wieloosiowe)</label>
               <button id="draw-finish">Zakończ kreskę</button>
               <button id="draw-hole">Dziura — nowy kontur</button>
+              <label><input id="draw-sketch-only" type="checkbox"> Zachowaj jako płaski szkic 2D</label>
+              <label>Szkic <select id="sketch-list" aria-label="Zapisany szkic 2D"></select></label>
+              <label>Wyciągnięcie <input id="sketch-depth" type="number" min="0.03" max="1000" value="10" step="0.1"> mm</label>
+              <button id="sketch-extrude">Wyciągnij szkic do 3D</button><button id="sketch-delete">Usuń szkic</button>
               <button id="draw-cancel">Anuluj</button>
               <small>Auto wybiera XY, XZ albo YZ według kierunku kamery. Tryb Wieloosiowo zachowuje każdą zamkniętą kreskę jako osobny widok (np. bok + góra) i łączy je w jedną bryłę.</small>
             </div>
             <div id="primitive-options" class="tool-options" hidden>
-              <strong>Interaktywna bryła</strong>
+              <strong>Interaktywna bryła / szkic</strong>
+              <label><input id="primitive-sketch-only" type="checkbox"> Szkic 2D (blok = prostokąt, cylinder = koło)</label>
+              <label><input id="primitive-exact-size" type="checkbox"> Dokładny rozmiar z pól (zamiast rozmiaru gestu)</label>
               <label>Bryła
                 <select id="primitive-shape"><option value="box">Blok</option><option value="triangle_prism">Trójkąt — graniastosłup</option><option value="hex_prism">Heksagon — graniastosłup</option><option value="sphere">Kula</option><option value="cylinder">Cylinder</option><option value="ellipsoid">Elipsoida</option><option value="cone">Stożek</option><option value="bolt">Śruba</option><option value="nut">Nakrętka</option><option value="washer">Podkładka</option><option value="gear">Koło zębate</option><option value="pin">Trzpień / pin</option><option value="thread_rod">Pręt gwintowany</option></select>
               </label>
               <label>Rozmiar startowy <input id="primitive-size" type="number" min="0.2" max="1000" step="0.1" value="40"><b>mm</b></label>
+              <label>Wysokość prostokąta <input id="primitive-height" type="number" min="0.2" max="1000" step="0.1" value="40"> mm</label>
               <label>Głębokość <input id="primitive-depth" type="number" min="0.2" max="1000" step="0.1" value="20"><b>mm</b></label>
               <label>Średnica <input id="part-diameter" type="number" min="0.2" max="1000" step="0.1" value="10"><b>mm</b></label>
               <label>Długość <input id="part-length" type="number" min="0.2" max="1000" step="0.1" value="30"><b>mm</b></label>
