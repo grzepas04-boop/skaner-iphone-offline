@@ -11,7 +11,7 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-B2H2axX7.js"></script>
+    <script type="module" crossorigin src="./assets/index-CPI3mn7j.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CH_VOTu4.css">
   </head>
   <body>
@@ -101,20 +101,20 @@
               <button id="draw-hole">Dziura — nowy kontur</button>
               <label><input id="draw-sketch-only" type="checkbox"> Zachowaj jako płaski szkic 2D</label>
               <label>Szkic <select id="sketch-list" aria-label="Zapisany szkic 2D"></select></label>
-              <label>Wyciągnięcie <input id="sketch-depth" type="number" min="0.03" max="1000" value="10" step="0.1"> mm</label>
-              <button id="sketch-extrude">Wyciągnij szkic do 3D</button><button id="sketch-delete">Usuń szkic</button>
+              <label>Wyciągnięcie <input id="sketch-depth" type="number" min="-1000" max="1000" value="10" step="0.1"> mm</label>
+              <button id="sketch-pull">↑ Przeciągnij szkic w bryłę</button><button id="sketch-extrude">Wyciągnij o wpisany wymiar</button><button id="sketch-delete">Usuń szkic</button>
               <button id="draw-cancel">Anuluj</button>
               <small>Auto wybiera XY, XZ albo YZ według kierunku kamery. Tryb Wieloosiowo zachowuje każdą zamkniętą kreskę jako osobny widok (np. bok + góra) i łączy je w jedną bryłę.</small>
             </div>
             <div id="primitive-options" class="tool-options" hidden>
               <strong>Interaktywna bryła / szkic</strong>
-              <label><input id="primitive-sketch-only" type="checkbox"> Szkic 2D (blok = prostokąt, cylinder = koło)</label>
+              <label><input id="primitive-sketch-only" type="checkbox"> Szkic 2D (blok = prostokąt, cylinder = koło, elipsoida = elipsa)</label>
               <label><input id="primitive-exact-size" type="checkbox"> Dokładny rozmiar z pól (zamiast rozmiaru gestu)</label>
               <label>Bryła
                 <select id="primitive-shape"><option value="box">Blok</option><option value="triangle_prism">Trójkąt — graniastosłup</option><option value="hex_prism">Heksagon — graniastosłup</option><option value="sphere">Kula</option><option value="cylinder">Cylinder</option><option value="ellipsoid">Elipsoida</option><option value="cone">Stożek</option><option value="bolt">Śruba</option><option value="nut">Nakrętka</option><option value="washer">Podkładka</option><option value="gear">Koło zębate</option><option value="pin">Trzpień / pin</option><option value="thread_rod">Pręt gwintowany</option></select>
               </label>
-              <label>Rozmiar startowy <input id="primitive-size" type="number" min="0.2" max="1000" step="0.1" value="40"><b>mm</b></label>
-              <label>Wysokość prostokąta <input id="primitive-height" type="number" min="0.2" max="1000" step="0.1" value="40"> mm</label>
+              <label><span id="primitive-size-caption">Szerokość X</span> <input id="primitive-size" type="number" min="0.2" max="1000" step="0.1" value="40"><b>mm</b></label>
+              <label>Wysokość Y / druga oś elipsy <input id="primitive-height" type="number" min="0.2" max="1000" step="0.1" value="40"> mm</label>
               <label>Głębokość <input id="primitive-depth" type="number" min="0.2" max="1000" step="0.1" value="20"><b>mm</b></label>
               <label>Średnica <input id="part-diameter" type="number" min="0.2" max="1000" step="0.1" value="10"><b>mm</b></label>
               <label>Długość <input id="part-length" type="number" min="0.2" max="1000" step="0.1" value="30"><b>mm</b></label>
