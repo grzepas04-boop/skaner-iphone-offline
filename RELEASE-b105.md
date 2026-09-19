@@ -1,0 +1,10 @@
+# b105 — edge rounding, surface strands and brush detail
+
+- Straight convex edges between planar faces: tangent circular rounding with radius in mm, or a flat chamfer. No global mesh subdivision. Radius changes update a debounced preview from the original geometry; transformed parts are baked once. Explicit commit/cancel remains.
+- Draw 3D → Sierść / włosy na bryle: surface-following strokes, anchored roots, tapered tips (preset 1 to 0.05 mm), original host locked throughout a stroke, free drawing beyond the silhouette. Strands remain separate solids, not an automatic Boolean union with the host. Wait for a strand to finish generating before the next stroke.
+- Sculpt defaults to radius and strength; depth automatically follows radius. Manual depth remains available. Crease uses a narrow falloff. Stroke samples are interpolated to close input gaps; local detail refinement continues beyond the former 50k cutoff, up to the existing 180k safety budget. Spatial queries avoid scanning every stroke sample for every vertex/triangle.
+- Render reuse preserves unchanged objects: the actual render-function test with 60 objects rebuilds 2 objects for selection, 0 for translation, 1 for a geometry replacement. Dense scenes omit unselected decorative edge/silhouette passes. Source geometry/export quality is unchanged.
+
+Tests: TypeScript/build; exact circular fillet volume and closed topology; rejection of planar diagonal; closed tapered strand; R1 clay/dent/crease detail on sphere; actual surface pointer path/host lock; actual 60-object renderer; spatial query equality and stroke continuity; existing curved-rod surfaces, sculpt, Boolean, OBJ/STL, transforms, 125 mm ellipse, sketch extrusion and offline asset tests.
+
+Limits: curved and concave edge fillets are not supported; this is not a full Shapr3D CAD fillet implementation. No claim of full Nomad/Blender feature or sculpting-quality parity. No visual browser/physical iPhone verification: browser test connection was unavailable. No measured device FPS guarantee. A complete detailed face/tooth sculpt has not been validated end-to-end.

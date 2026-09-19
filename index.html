@@ -11,7 +11,7 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-DeHy6b1a.js"></script>
+    <script type="module" crossorigin src="./assets/index-DEkeJbD4.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CH_VOTu4.css">
   </head>
   <body>
@@ -80,6 +80,9 @@
               <small id="area-action-status">Obszar pozostaje częścią jednej bryły. Odciągnij, Skręć i Wygnij nie rozdzielają modelu; Odetnij tworzy dwie zamknięte bryły dopiero na żądanie.</small>
             </div>
             <div id="draw-options" class="tool-options" hidden>
+              <button id="draw-hair" type="button">Sierść / włosy na bryle</button>
+              <label><input id="draw-surface-follow" type="checkbox"> Prowadź kreskę po powierzchni bryły</label>
+              <small>Zacznij na modelu i przeciągnij. Każdy gest tworzy osobne pasmo; grubość początku i końca określa zwężenie. Po wyjściu poza obrys modelu końcówka rysuje się swobodnie.</small>
               <label>Tryb
                 <select id="draw-mode"><option value="rod">Pręt — gotowy po puszczeniu</option><option value="outline">Pełna bryła — zamknij obrys</option></select>
               </label>
@@ -135,9 +138,10 @@
               <label>Narzędzie
                 <select id="sculpt-mode"><option value="inflate">Wypchnij</option><option value="clay">Clay / glina</option><option value="deflate">Dłuto / wgnieć</option><option value="smooth">Wygładź</option><option value="flatten">Spłaszcz</option><option value="scrape">Scrape / zetnij</option><option value="crease">Bruzda</option><option value="pinch">Zwęź pędzlem</option><option value="expand">Rozszerz pędzlem</option><option value="grab">Rozciągnij</option><option value="snake">Snake Hook</option><option value="thicken">Pogrub</option><option value="scales">Stempel: łuski</option><option value="grooves">Stempel: rowki</option><option value="studs">Stempel: ćwieki</option><option value="mask">Maskuj / chroń</option><option value="unmask">Wymaż maskę</option></select>
               </label>
-              <label>Promień <input id="sculpt-radius" type="number" min="0.1" max="1000" step="0.1" value="8"><b>mm</b><input id="sculpt-radius-slider" type="range" min="0.5" max="60" step="0.5" value="8" aria-label="Promień pędzla suwak"></label>
-              <label>Ruch <input id="sculpt-depth" type="number" min="0.01" max="100" step="0.1" value="2"><b>mm</b><input id="sculpt-depth-slider" type="range" min="0.1" max="20" step="0.1" value="2" aria-label="Głębokość ruchu suwak"></label>
-              <label>Siła <input id="sculpt-strength" type="number" min="-1" max="1" step="0.05" value="0.45"><input id="sculpt-strength-slider" type="range" min="-1" max="1" step="0.05" value="0.45" aria-label="Siła pędzla suwak"></label>
+              <label>Promień <input id="sculpt-radius" type="number" min="0.1" max="1000" step="0.1" value="8"><b>mm</b><input id="sculpt-radius-slider" type="range" min="0.1" max="60" step="0.1" value="8" aria-label="Promień pędzla suwak"></label>
+              <label><input id="sculpt-auto-depth" type="checkbox" checked> Głębokość automatyczna — steruj promieniem i siłą</label>
+              <details><summary>Ręczna głębokość (wyłącz automat)</summary><label>Ruch <input id="sculpt-depth" type="number" min="0.01" max="100" step="0.1" value="2"><b>mm</b><input id="sculpt-depth-slider" type="range" min="0.1" max="20" step="0.1" value="2" aria-label="Głębokość ruchu suwak"></label></details>
+              <label>Siła <input id="sculpt-strength" type="number" min="0" max="1" step="0.01" value="0.45"><input id="sculpt-strength-slider" type="range" min="0" max="1" step="0.01" value="0.45" aria-label="Siła pędzla suwak"></label>
               <label>Gęstość <select id="sculpt-density"><option value="2">Baza · 2,0 mm</option><option value="0.8" selected>Detal · 0,8 mm</option><option value="0.35">Mikro · 0,35 mm</option></select></label>
               <details class="tool-advanced"><summary>Topologia, symetria i warstwy</summary><div class="tool-advanced-grid">
               <label>Odstęp próbek <input id="sculpt-spacing" type="number" min="3" max="50" step="1" value="8"><b>%</b></label>
@@ -193,12 +197,12 @@
               <button id="face-apply">Zatwierdź powierzchnię</button>
               <button id="face-clear">Wyczyść wybór</button>
               <small>Wybierz ŚCIANĘ, KRAWĘDŹ albo WIERZCHOŁEK i dotknij powierzchni blisko elementu. Wierzchołek można wysunąć niebieską strzałką, tworząc precyzyjny ostry czubek. Podgląd jest natychmiastowy, a zatwierdzenie zachowuje zamkniętą siatkę.</small>
-              <strong>Fazowanie krawędzi (bevel)</strong>
-              <label>Szerokość <input id="bevel-width" type="number" min="0.05" max="50" step="0.1" value="2"><b>mm</b><input id="bevel-width-slider" type="range" min="0.1" max="15" step="0.1" value="2" aria-label="Szerokość fazowania suwak"></label>
-              <label>Segmenty <select id="bevel-segments"><option value="1">1 — ostra faza</option><option value="2" selected>2 — łagodna</option><option value="3">3 — gładka</option><option value="4">4 — bardzo gładka</option></select></label>
-              <label>Profil <select id="bevel-profile"><option value="round">Okrągły</option><option value="linear">Prosty (faza)</option><option value="concave">Wklęsły</option></select></label>
+              <strong>Zaokrąglanie krawędzi / faza</strong>
+              <label>Promień R / szerokość fazy <input id="bevel-width" type="number" min="0.05" max="50" step="0.1" value="2"><b>mm</b><input id="bevel-width-slider" type="range" min="0.1" max="15" step="0.1" value="2" aria-label="Szerokość fazowania suwak"></label>
+              <label>Dokładność łuku <select id="bevel-segments"><option value="8">8 — szybka</option><option value="12" selected>12 — gładka</option><option value="24">24 — dokładna</option></select></label>
+              <label>Profil <select id="bevel-profile"><option value="round">Zaokrąglenie — promień R</option><option value="linear">Płaska faza</option></select></label>
               <div class="compact-actions"><button id="bevel-preview" type="button">Podgląd</button><button id="bevel-commit" type="button" disabled>Zatwierdź fazę</button><button id="bevel-cancel" type="button" disabled>Anuluj</button></div>
-              <small id="bevel-status">Wybierz krawędź powyżej, ustaw szerokość i profil — podgląd pokaże realnie zastosowaną wartość; zbyt szeroka faza zostanie automatycznie ograniczona z komunikatem.</small>
+              <small id="bevel-status">Wybierz prostą wypukłą krawędź między dwiema płaskimi ścianami. Zmień promień R, obejrzyj podgląd i zatwierdź. Krzywe i wklęsłe krawędzie nie są jeszcze obsługiwane.</small>
               <strong>Zaginanie powierzchni</strong>
               <label>Profil <select id="bend-profile"><option value="circle">Koło — łagodny łuk</option><option value="triangle">Trójkąt — ostry szczyt</option><option value="hex">Heksagon — plateau</option><option value="flat">Płaskie uniesienie</option></select></label>
               <label>Głębokość <input id="bend-amount" type="number" min="-1000" max="1000" step="0.5" value="8"><b>mm</b><input id="bend-amount-slider" type="range" min="-40" max="40" step="0.5" value="8" aria-label="Głębokość zagięcia suwak"></label>
