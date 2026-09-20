@@ -11,7 +11,7 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-DEkeJbD4.js"></script>
+    <script type="module" crossorigin src="./assets/index-DZ12Yl71.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CH_VOTu4.css">
   </head>
   <body>
@@ -80,6 +80,9 @@
               <small id="area-action-status">Obszar pozostaje częścią jednej bryły. Odciągnij, Skręć i Wygnij nie rozdzielają modelu; Odetnij tworzy dwie zamknięte bryły dopiero na żądanie.</small>
             </div>
             <div id="draw-options" class="tool-options" hidden>
+              <label>Element <select id="draw-element"><option value="freehand">Odręcznie</option><option value="line">Prosta kreska</option><option value="arc">Łuk / wygięta kreska</option><option value="circle">Koło — środek i promień</option><option value="ellipse">Elipsa</option><option value="square">Kwadrat</option><option value="rectangle">Prostokąt</option></select></label>
+              <label id="draw-bend-options" hidden>Wygięcie łuku <input id="draw-bend" type="number" value="10" step="0.1"> mm <button id="draw-arc-accept" type="button">Zatwierdź łuk</button></label>
+              <small>Odcinki i łuki: przeciągnij do końca kolejnego odcinka. Łuk: po puszczeniu ustaw wygięcie i zatwierdź. Figury: przeciągnij; następnie Zamknij bryłę. Opcja Dziura rozpoczyna osobny kontur wewnętrzny.</small>
               <button id="draw-hair" type="button">Sierść / włosy na bryle</button>
               <label><input id="draw-surface-follow" type="checkbox"> Prowadź kreskę po powierzchni bryły</label>
               <small>Zacznij na modelu i przeciągnij. Każdy gest tworzy osobne pasmo; grubość początku i końca określa zwężenie. Po wyjściu poza obrys modelu końcówka rysuje się swobodnie.</small>
