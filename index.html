@@ -11,8 +11,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-wEf68QZh.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Bjpm5NsJ.css">
+    <script type="module" crossorigin src="./assets/index-D8KQSsWM.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Ct3zgYxN.css">
   </head>
   <body>
     <script type="module" src="./mobile-acceptance.js" defer></script>
@@ -89,7 +89,7 @@
                 <select id="draw-mode"><option value="rod">Pręt — gotowy po puszczeniu</option><option value="outline">Pełna bryła — zamknij obrys</option></select>
               </label>
               <label>Płaszczyzna
-                <select id="draw-plane-mode"><option value="auto">Auto — najbliższa płaszczyzna kamery</option><option value="multi">Wieloosiowo — pełny obrys przód / bok / góra</option><option value="view">Równolegle do ekranu</option><option value="surface">Stycznie do klikniętej ściany</option><option value="xy">Świat XY</option><option value="xz">Świat XZ</option><option value="yz">Świat YZ</option></select>
+                <select id="draw-plane-mode"><option value="auto">Auto — najbliższa płaszczyzna kamery</option><option value="multi">Wieloosiowo — jedna bryła z rzutów</option><option value="view">Równolegle do ekranu</option><option value="surface">Stycznie do klikniętej ściany</option><option value="xy">Świat XY</option><option value="xz">Świat XZ</option><option value="yz">Świat YZ</option></select>
               </label>
               <label>Odsunięcie <input id="draw-plane-offset" type="number" min="0" max="1000" step="0.05" value="0.15"><b>mm</b></label>
               <label>Profil
@@ -109,7 +109,7 @@
               <label>Wyciągnięcie <input id="sketch-depth" type="number" min="-1000" max="1000" value="10" step="0.1"> mm</label>
               <button id="sketch-pull">↑ Przeciągnij szkic w bryłę</button><button id="sketch-extrude">Wyciągnij o wpisany wymiar</button><button id="sketch-delete">Usuń szkic</button>
               <button id="draw-cancel">Anuluj</button>
-              <small>Auto wybiera XY, XZ albo YZ według kierunku kamery. Tryb Wieloosiowo zachowuje każdą zamkniętą kreskę jako osobny widok (np. bok + góra) i łączy je w jedną bryłę.</small>
+              <small>Wieloosiowo: narysuj obrys, obróć widok i narysuj następny. Zamknij bryłę tworzy jeden model ze wszystkich rzutów. Szkice pozostają zapisane; niedokładne rzuty dają wspólne przybliżenie z raportem różnic.</small>
             </div>
             <div id="primitive-options" class="tool-options" hidden>
               <strong>Interaktywna bryła / szkic</strong>
