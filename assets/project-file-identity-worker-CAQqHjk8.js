@@ -1,0 +1,2 @@
+(function(){async function e(e,t,n=4194304){if(e.size!==t.size)return!1;for(let r=0;r<e.size;r+=n){let i=Math.min(e.size,r+n),[a,o]=await Promise.all([e.slice(r,i).arrayBuffer(),t.slice(r,i).arrayBuffer()]),s=new Uint8Array(a),c=new Uint8Array(o);for(let e=0;e<s.length;e++)if(s[e]!==c[e])return!1}return!0}self.onmessage=async t=>{try{self.postMessage({same:await e(t.data.left,t.data.right)})}catch(e){self.postMessage({error:e instanceof Error?e.message:String(e)})}}})();
+//# sourceMappingURL=project-file-identity-worker-CAQqHjk8.js.map
