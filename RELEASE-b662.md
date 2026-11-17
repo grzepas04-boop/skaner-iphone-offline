@@ -10,7 +10,7 @@ Poprawki po przeglądzie wszystkich narzędzi (każdy kafel z „Więcej” klik
 
 Łatwiejsza nawigacja:
 - Klik w pusty stół odznacza bryły; „Zaznacz wszystkie” w podpowiedziach.
-- Prawy klik (na telefonie: przytrzymanie) na bryle: menu narzędzi pasujących do zaznaczenia.
+- Prawy klik na bryle (na komputerze): menu narzędzi pasujących do zaznaczenia.
 - „Co chcesz zrobić?” szuka we wszystkich narzędziach programu i pamięta ostatnio używane.
 - Telefon: górna półka i podpowiedzi w jednym przewijanym rzędzie.
 - Pasek stanu podczas rzeźby podaje polską nazwę pędzla.
