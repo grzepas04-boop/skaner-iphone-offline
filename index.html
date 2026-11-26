@@ -11,13 +11,23 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/png" href="./assets/skaner-icon.png" />
     <title>Skaner Studio</title>
-    <script type="module" crossorigin src="./assets/index-C-JMmqQZ.js"></script>
+    <script type="module" crossorigin src="./assets/index-ByEZHroQ.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/three.core-DnkxiOGo.js">
-    <link rel="modulepreload" crossorigin href="./assets/GLTFLoader-DaxPh0t4.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-CyQSUqIv.css">
+    <link rel="modulepreload" crossorigin href="./assets/GLTFLoader-Dt0mhxfw.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-CR3eE__i.css">
   </head>
   <body data-theme="dark">
-    <script type="module" src="./mobile-acceptance.js" defer></script>
+    <script>
+      /* b699-G: sonda odbioru na telefonie tworzyła przy każdym starcie osobny kontekst WebGL (ok. 0,2 s pracy przed pierwszym obrazem).
+         Z ?qa=1 wczytuje się od razu jak dawniej; bez tego dopiero przy pierwszym __skanerMobileQA.run(). */
+      (function () {
+        var loading = null;
+        function load() { return loading || (loading = new Promise(function (ok, bad) { var s = document.createElement("script"); s.src = "./mobile-acceptance.js"; s.onload = ok; s.onerror = bad; document.head.appendChild(s); })); }
+        if (new URLSearchParams(location.search).get("qa") === "1") { document.addEventListener("DOMContentLoaded", load); return; }
+        window.__skanerMobileQA = { lazy: true, load: load, result: function () { return null; },
+          run: function (ms) { return load().then(function () { return window.__skanerMobileQA.run(ms); }); } };
+      })();
+    </script>
     <div id="app">
       <header class="topbar">
         <div class="brand"><span class="brand-mark"><img src="./assets/skaner-icon.png" alt=""></span><strong>Skaner Studio</strong><small>precyzyjne modelowanie 3D</small></div>
